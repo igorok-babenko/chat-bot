@@ -19,6 +19,7 @@ function createChatBotIcon() {
     textNeedHelp.innerHTML = "Нужна помощь?";
     textNeedHelp.id = "need-help-text";
     textNeedHelp.hidden = true;
+    textNeedHelp.classList.add("chat-bot-text-need-help");
     chatBotIconDiv.appendChild(textNeedHelp);
 
     $("#chat-bot-icon").hover(function() {
