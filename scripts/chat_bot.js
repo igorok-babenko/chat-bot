@@ -1,6 +1,11 @@
 $(document).ready(function(){
-    createChatBotIcon();
+    runChatBot();
 });
+
+function runChatBot() {
+    createChatBotIcon();
+    createChatBotDialogModal();
+}
 
 function createChatBotIcon() {
     let chatBotIconDiv = document.createElement("div");
@@ -10,7 +15,6 @@ function createChatBotIcon() {
     chatBotIcon.id = "chat-bot-icon";
     chatBotIcon.src = "images/chat-bot-icon.jpg"
     chatBotIcon.alt = "Chat-bot";
-    chatBotIcon.classList.add("chat-bot-icon");
     chatBotIcon.onclick = openChatBotDialog;
 
     chatBotIconDiv.appendChild(chatBotIcon);
@@ -30,7 +34,7 @@ function createChatBotIcon() {
     });
 }
 
-function openChatBotDialog() {
+function createChatBotDialogModal() {
     let chatBotDialogModal = document.createElement("div");
     chatBotDialogModal.id = "chat-bot-dialog-modal";
     chatBotDialogModal.hidden = true;
@@ -42,6 +46,38 @@ function openChatBotDialog() {
     closeChatBotDialogModalButton.onclick = closeChatBotDialog;
     chatBotDialogModal.appendChild(closeChatBotDialogModalButton);
 
+    let chatBotSendMessageDiv = document.createElement("div");
+    chatBotSendMessageDiv.id = "chat-bot-send-message-div";
+
+    chatBotDialogModal.appendChild(chatBotSendMessageDiv);
+
+    let chatBotSendMessageText = document.createElement("input");
+    chatBotSendMessageText.id = "chat-bot-send-message-text";
+    chatBotSendMessageText.placeholder = "Как авторизоваться?";
+
+    let chatBotSendMessageButton = document.createElement("img");
+    chatBotSendMessageButton.id = "chat-bot-send-message-button";
+    chatBotSendMessageButton.src = "images/chat-bot-send-message-button.png";
+    chatBotSendMessageButton.alt = "Найти";
+    chatBotSendMessageButton.onclick = chatBotFindQuestion;
+
+    chatBotSendMessageDiv.appendChild(chatBotSendMessageText);
+    chatBotSendMessageDiv.appendChild(chatBotSendMessageButton);
+
+    let chatBotMessagesAreaDiv = document.createElement("div");
+    chatBotMessagesAreaDiv.id = "chat-bot-messages-area-div";
+
+    chatBotDialogModal.appendChild(chatBotMessagesAreaDiv);
+
+    let chatBotWelcomeText = document.createElement("p");
+    chatBotWelcomeText.id = "chat-bot-welocome-text";
+    chatBotWelcomeText.classList.add("chat-bot-messages");
+    chatBotWelcomeText.innerHTML = "Я робот-помощник сисетемы СЕВГУ.РУ, и я попытаюсь Вам помочь решить возникающие вопросы.<br>";
+
+    chatBotMessagesAreaDiv.appendChild(chatBotWelcomeText);
+}
+
+function openChatBotDialog() {
     $("#chat-bot-icon-div").fadeOut(100);
     $("#chat-bot-dialog-modal").fadeIn(1000);
 }
@@ -49,4 +85,25 @@ function openChatBotDialog() {
 function closeChatBotDialog() {
     $("#chat-bot-dialog-modal").fadeOut(100);
     $("#chat-bot-icon-div").fadeIn(1000);
+}
+
+function chatBotFindQuestion() {
+    let message = $("#chat-bot-send-message-text").val();
+    chatBotCreateUserMessage(message);
+}
+
+function chatBotCreateUserMessage(message) {
+    if (message.length > 0) {
+        let userMessageDiv = document.createElement("div");
+        userMessageDiv.classList.add("user-message-div");
+
+        let userMessage = document.createElement("p");
+        userMessage.classList.add("chat-bot-user-message");
+        userMessage.classList.add("chat-bot-messages");
+        userMessage.innerHTML = message;
+
+        userMessageDiv.appendChild(userMessage);
+
+        $("#chat-bot-messages-area-div").append(userMessageDiv);
+    }
 }

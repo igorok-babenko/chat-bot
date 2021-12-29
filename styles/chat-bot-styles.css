@@ -1,4 +1,4 @@
-.chat-bot-icon {
+#chat-bot-icon {
     width: 90px;
     position:absolute;
     bottom: 0;
@@ -49,12 +49,13 @@
 #chat-bot-dialog-modal {
     position:absolute;
     bottom: 0;
-    right: 0;
+    right: 6px;
     width: 27%;
     height: 65%;
     border: solid;
-    border-width: 3px;
+    border-width: 5px;
     border-color: #008B8B;
+    border-radius: 10px;
 }
 
 #close-chat-bot-dialog-modal-button {
@@ -86,4 +87,67 @@
 
 #close-chat-bot-dialog-modal-button:after {
     transform: rotate(-45deg);
+}
+
+#chat-bot-send-message-div {
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    bottom: 8px;
+    border-top: solid 1px #C0C0C0;
+}
+
+#chat-bot-send-message-text {
+    position: absolute;
+    height: 100%;
+    width: 90%;
+    border: 0;
+    top: 2px;
+}
+
+#chat-bot-send-message-button {
+    position: absolute;
+    cursor: pointer;
+    right: 2px;
+    top: 4px;
+    height: 100%;
+}
+
+#chat-bot-messages-area-div {
+    position: absolute;
+    bottom: 41px;
+    left: 2px;
+    right: 2px;
+    top: 2px;
+    overflow: auto;
+    border: solid 2px red;
+}
+
+p.chat-bot-messages {
+    border: 1px solid silver;
+    background-color: silver;
+    border-radius: 15px;
+    padding: 10px;
+    display: inline-block;
+    word-wrap: break-word;
+}
+
+p.chat-bot-user-message {
+    border-color: #47BDF0;
+    background-color: #47BDF0;
+}
+
+#chat-bot-welocome-text {
+    border: 1px solid silver;
+    background-color: silver;
+    border-radius: 15px;
+    padding: 10px;
+    display: inline-block;
+    word-wrap: break-word;
+}
+
+div.user-message-div {
+    max-width: 98%;
+    left: 2px;
+    word-break: break-all;
 }
