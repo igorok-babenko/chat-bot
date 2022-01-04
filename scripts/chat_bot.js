@@ -3,6 +3,8 @@ $(document).ready(function(){
 });
 
 function runChatBot() {
+    let currentQuestionsBlockId = "";
+
     createChatBotIcon();
     createChatBotDialogModal();
 }
@@ -69,12 +71,7 @@ function createChatBotDialogModal() {
 
     chatBotDialogModal.appendChild(chatBotMessagesAreaDiv);
 
-    let chatBotWelcomeText = document.createElement("p");
-    chatBotWelcomeText.id = "chat-bot-welocome-text";
-    chatBotWelcomeText.classList.add("chat-bot-messages");
-    chatBotWelcomeText.innerHTML = "Я робот-помощник сисетемы СЕВГУ.РУ, и я попытаюсь Вам помочь решить возникающие вопросы.";
-
-    chatBotMessagesAreaDiv.appendChild(chatBotWelcomeText);
+    createFirstMessages();
 }
 
 function openChatBotDialog() {
@@ -89,7 +86,9 @@ function closeChatBotDialog() {
 
 function chatBotFindQuestion() {
     let message = $("#chat-bot-send-message-text").val();
+    $("#chat-bot-send-message-text").val("");
     chatBotCreateUserMessage(message);
+    showResultsForUserMessage();
     scrollDownChat();
 }
 
@@ -108,7 +107,82 @@ function chatBotCreateUserMessage(message) {
         $("#chat-bot-messages-area-div").append(userMessageDiv);
     }
 }
+function showResultsForUserMessage() {
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let chatBotAnswer = createChatBotMessage("Извините, по данному запросу ничего не найдено");
+
+    messagesArea.append(chatBotAnswer);
+
+    let currentQestion = document.getElementById(currentQuestionsBlockId);
+    currentQestion.remove();
+    messagesArea.append(currentQestion);
+}
+
+
+function createFirstMessages() {
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let firstMessagesDiv = createChatbotDiv("first-messages-div");
+    let chatBotWelcomeText = createChatBotMessage("Я робот-помощник СЕВГУ.РУ, и попытаюсь помочь Вам решить возникающие вопросы");
+    let chatBotFirstQestion = createChatBotMessage("Для начала мне нужно узнать вашу роль в системе дистанционного обучения. Кем вы являетесь?");
+
+    messagesArea.append(firstMessagesDiv);
+    firstMessagesDiv.append(chatBotWelcomeText);
+    firstMessagesDiv.append(chatBotFirstQestion);
+
+    let chatBotChoseTeacherButton = createChatBotButton("chat-bot-teacher-button", "Преподаватель");
+    chatBotChoseTeacherButton.onclick = choseCategoryForTeachers;
+
+    let chatBotChoseStudentButton = createChatBotButton("chat-bot-student-button", "Студент");
+    chatBotChoseStudentButton.onclick = choseCategoryForStudents;
+
+    let chatBotChoseOutsideListenerButton = createChatBotButton("chat-bot-outside-listener-button", "Внешний слушатель");
+    chatBotChoseOutsideListenerButton.onclick = choseCategoryForOutsideListeners;
+
+    let chatBotChoseTutorButton = createChatBotButton("chat-bot-tutor-button", "Тьютер");
+    chatBotChoseTutorButton.onclick = choseCategoryForTutors;
+
+    firstMessagesDiv.append(chatBotChoseTeacherButton);
+    firstMessagesDiv.append(chatBotChoseStudentButton);
+    firstMessagesDiv.append(chatBotChoseOutsideListenerButton);
+    firstMessagesDiv.append(chatBotChoseTutorButton);
+
+    currentQuestionsBlockId = "first-messages-div";
+
+    scrollDownChat();
+}
+
+function choseCategoryForTeachers() { alert("Функционал ответов будет разработан позднее!"); }
+
+function choseCategoryForStudents() { alert("Функционал ответов будет разработан позднее!"); }
+
+function choseCategoryForOutsideListeners() { alert("Функционал ответов будет разработан позднее!"); }
+
+function choseCategoryForTutors() { alert("Функционал ответов будет разработан позднее!"); }
 
 function scrollDownChat() {
     $("#chat-bot-messages-area-div").scrollTop($("#chat-bot-messages-area-div")[0].scrollHeight);
+}
+
+function createChatBotButton(id, text) {
+    let button = document.createElement("div");
+    button.id = id;
+    button.classList.add("chat-bot-variant-button");
+    button.innerHTML = text;
+
+    return button;
+}
+
+function createChatBotMessage(text) {
+    let message = document.createElement("p");
+    message.classList.add("chat-bot-messages");
+    message.innerHTML = text;
+
+    return message;
+}
+
+function createChatbotDiv(id) {
+    let div = document.createElement("div");
+    div.id = id;
+
+    return div;
 }

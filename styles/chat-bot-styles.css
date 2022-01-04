@@ -123,8 +123,8 @@
 }
 
 p.chat-bot-messages {
-    border: 1px solid silver;
-    background-color: silver;
+    border: 1px solid #7FFFD4;
+    background-color: #7FFFD4;
     border-radius: 15px;
     padding: 10px;
     display: inline-block;
@@ -134,11 +134,12 @@ p.chat-bot-messages {
 p.chat-bot-user-message {
     border-color: #47BDF0;
     background-color: #47BDF0;
+    color: white;
 }
 
 #chat-bot-welocome-text {
-    border: 1px solid silver;
-    background-color: silver;
+    border: 1px solid #7FFFD4;
+    background-color: #7FFFD4;
     border-radius: 15px;
     padding: 10px;
     display: inline-block;
@@ -149,4 +150,20 @@ div.user-message-div {
     max-width: 98%;
     left: 2px;
     word-break: break-all;
+    text-align: right;
+}
+
+.chat-bot-variant-button {
+    display: inline-block;
+    cursor: pointer;
+    padding: 4px;
+    margin: 4px;
+    border: solid 1px #47BDF0;
+    color: white;
+    background-color: #47BDF0;
+    border-radius: 25px;
+}
+
+.chat-bot-variant-button:hover {
+    opacity: 0.5;
 }
