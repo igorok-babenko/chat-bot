@@ -72,7 +72,7 @@ function createChatBotDialogModal() {
     let chatBotWelcomeText = document.createElement("p");
     chatBotWelcomeText.id = "chat-bot-welocome-text";
     chatBotWelcomeText.classList.add("chat-bot-messages");
-    chatBotWelcomeText.innerHTML = "Я робот-помощник сисетемы СЕВГУ.РУ, и я попытаюсь Вам помочь решить возникающие вопросы.<br>";
+    chatBotWelcomeText.innerHTML = "Я робот-помощник сисетемы СЕВГУ.РУ, и я попытаюсь Вам помочь решить возникающие вопросы.";
 
     chatBotMessagesAreaDiv.appendChild(chatBotWelcomeText);
 }
@@ -90,6 +90,7 @@ function closeChatBotDialog() {
 function chatBotFindQuestion() {
     let message = $("#chat-bot-send-message-text").val();
     chatBotCreateUserMessage(message);
+    scrollDownChat();
 }
 
 function chatBotCreateUserMessage(message) {
@@ -106,4 +107,8 @@ function chatBotCreateUserMessage(message) {
 
         $("#chat-bot-messages-area-div").append(userMessageDiv);
     }
+}
+
+function scrollDownChat() {
+    $("#chat-bot-messages-area-div").scrollTop($("#chat-bot-messages-area-div")[0].scrollHeight);
 }

@@ -120,7 +120,6 @@
     right: 2px;
     top: 2px;
     overflow: auto;
-    border: solid 2px red;
 }
 
 p.chat-bot-messages {
