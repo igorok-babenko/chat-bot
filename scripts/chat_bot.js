@@ -4,18 +4,20 @@ $(document).ready(function(){
 
 function runChatBot() {
     let currentQuestionsBlockId = "";
+    let chatBotIconLocation = "images/chat-bot-icon.jpg";
+    let chatBotSendMessageiconLocation = "images/chat-bot-send-message-button.png";
 
-    createChatBotIcon();
-    createChatBotDialogModal();
+    createChatBotIcon(chatBotIconLocation);
+    createChatBotDialogModal(chatBotSendMessageiconLocation);
 }
 
-function createChatBotIcon() {
+function createChatBotIcon(chatBotIconLocation) {
     let chatBotIconDiv = document.createElement("div");
     chatBotIconDiv.id = "chat-bot-icon-div";
 
     let chatBotIcon = document.createElement("img");
     chatBotIcon.id = "chat-bot-icon";
-    chatBotIcon.src = "images/chat-bot-icon.jpg"
+    chatBotIcon.src = chatBotIconLocation;
     chatBotIcon.alt = "Chat-bot";
     chatBotIcon.onclick = openChatBotDialog;
 
@@ -36,7 +38,7 @@ function createChatBotIcon() {
     });
 }
 
-function createChatBotDialogModal() {
+function createChatBotDialogModal(chatBotSendMessageiconLocation) {
     let chatBotDialogModal = document.createElement("div");
     chatBotDialogModal.id = "chat-bot-dialog-modal";
     chatBotDialogModal.hidden = true;
@@ -59,7 +61,7 @@ function createChatBotDialogModal() {
 
     let chatBotSendMessageButton = document.createElement("img");
     chatBotSendMessageButton.id = "chat-bot-send-message-button";
-    chatBotSendMessageButton.src = "images/chat-bot-send-message-button.png";
+    chatBotSendMessageButton.src = chatBotSendMessageiconLocation;
     chatBotSendMessageButton.alt = "Найти";
     chatBotSendMessageButton.onclick = chatBotFindQuestion;
 
@@ -141,30 +143,111 @@ function createFirstMessages() {
     let chatBotChoseTutorButton = createChatBotButton("chat-bot-tutor-button", "Тьютер");
     chatBotChoseTutorButton.onclick = choseCategoryForTutors;
 
-    firstMessagesDiv.append(chatBotChoseTeacherButton);
-    firstMessagesDiv.append(chatBotChoseStudentButton);
-    firstMessagesDiv.append(chatBotChoseOutsideListenerButton);
-    firstMessagesDiv.append(chatBotChoseTutorButton);
+    firstMessagesDiv.appendChild(chatBotChoseTeacherButton);
+    firstMessagesDiv.appendChild(chatBotChoseStudentButton);
+    firstMessagesDiv.appendChild(chatBotChoseOutsideListenerButton);
+    firstMessagesDiv.appendChild(chatBotChoseTutorButton);
 
     currentQuestionsBlockId = "first-messages-div";
-
     scrollDownChat();
 }
 
-function choseCategoryForTeachers() { alert("Функционал ответов будет разработан позднее!"); }
+// Begining of the block with qestions related to teachers
 
-function choseCategoryForStudents() { alert("Функционал ответов будет разработан позднее!"); }
+function choseCategoryForTeachers() { 
+    $("#chat-bot-teacher-button").remove();
+    $("#chat-bot-student-button").remove();
+    $("#chat-bot-outside-listener-button").remove();
+    $("#chat-bot-tutor-button").remove();
 
-function choseCategoryForOutsideListeners() { alert("Функционал ответов будет разработан позднее!"); }
+    let userChose = chatBotCreateUserMessage("Преподаватель");
 
-function choseCategoryForTutors() { alert("Функционал ответов будет разработан позднее!"); }
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let firstCategoryForTeachersDiv = createChatbotDiv("first-category-for-teachers-div");
+
+    messagesArea.append(userChose);
+    messagesArea.append(firstCategoryForTeachersDiv);
+
+    let firstCategoryForTeachersMessage = createChatBotMessage("Выберите пожалуйста категорию, к которой относится Ваш вопрос:");
+
+    firstCategoryForTeachersDiv.appendChild(firstCategoryForTeachersMessage);
+
+    let chatBotChoseAuthProblemsButton = createChatBotButton("chat-bot-teachers-auth-problem-btn", "Проблемы с авторизацией");
+    chatBotChoseAuthProblemsButton.onclick = answerForTeacherAuthProblem;
+
+    let chatBotSetupElementsProblemButton = createChatBotButton("teachers-setup-elements-problem-btn", "Проблемы с настройкой элементов курса");
+    chatBotSetupElementsProblemButton.onclick = choseSubcategoryForTeacherSetupElements;
+
+    let chatBotEncrollmentProblemsButton = createChatBotButton("chat-bot-teachers-encrollment-problem-btn", "Проблемы с зачислением пользователей на курс/отчислением пользователей из курса");
+    chatBotEncrollmentProblemsButton.onclick = choseSubcategoryForTeacherEncrollmentProblems;
+
+    let chatBotTeachersGradebookProblemsButton = createChatBotButton("teachers-gradebook-problem-btn", "Проблемы с настройкой журнала оценок");
+    chatBotTeachersGradebookProblemsButton.onclick = choseSubcategoryForTeacherGradebookProblems;
+
+    let chatBotTeachersQuestionsBankProblemsButton = createChatBotButton("teachers-questions-bank-problem-btn", "Проблемы с настройкой банка вопросов");
+    chatBotTeachersQuestionsBankProblemsButton.onclick = choseSubcategoryForTeacherQuestionsBankProblems;
+
+    let chatBotTeachersGroupesBreakdownProblemsButton = createChatBotButton("teachers-groupes-breakdown-problem-btn", "Проблемы с разбиением групп на подгруппы");
+    chatBotTeachersGroupesBreakdownProblemsButton.onclick = choseSubcategoryForTeacherGroupesBreakdownProblems;
+
+    firstCategoryForTeachersDiv.appendChild(chatBotChoseAuthProblemsButton);
+    firstCategoryForTeachersDiv.appendChild(chatBotSetupElementsProblemButton);
+    firstCategoryForTeachersDiv.appendChild(chatBotEncrollmentProblemsButton);
+    firstCategoryForTeachersDiv.appendChild(chatBotTeachersGradebookProblemsButton);
+    firstCategoryForTeachersDiv.appendChild(chatBotTeachersQuestionsBankProblemsButton);
+    firstCategoryForTeachersDiv.appendChild(chatBotTeachersGroupesBreakdownProblemsButton);
+
+    currentQuestionsBlockId = "first-category-for-teachers-div";
+    scrollDownChat();
+ }
+
+ function answerForTeacherAuthProblem() {
+    let userChose =  chatBotCreateUserMessage($("#chat-bot-teachers-auth-problem-btn").text());
+
+    $("#chat-bot-teachers-auth-problem-btn").remove();
+    $("#teachers-setup-elements-problem-btn").remove();
+    $("#chat-bot-teachers-encrollment-problem-btn").remove();
+    $("#teachers-gradebook-problem-btn").remove();
+    $("#teachers-questions-bank-problem-btn").remove();
+    $("#teachers-groupes-breakdown-problem-btn").remove();
+
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let answerForTeacherAuthProblemDiv = createChatbotDiv("answer-for-teachers-auth-problems-div");
+
+    messagesArea.append(userChose);
+    messagesArea.append(answerForTeacherAuthProblemDiv);
+
+    let answerForTeacherAuthProblems = createChatBotMessage("Тут будет стандартный ответ на вопрос об авторизации");
+    answerForTeacherAuthProblemDiv.appendChild(answerForTeacherAuthProblems);
+
+    setTimeout(renderBlockIsChatBotHelped, 5000);
+    scrollDownChat();
+ }
+
+ function choseSubcategoryForTeacherSetupElements() {}
+
+ function choseSubcategoryForTeacherEncrollmentProblems() {}
+
+ function choseSubcategoryForTeacherGradebookProblems() {}
+
+ function choseSubcategoryForTeacherQuestionsBankProblems() {}
+
+ function choseSubcategoryForTeacherGroupesBreakdownProblems() {}
+
+// End of the block with qestions related to teachers
+
+function choseCategoryForStudents() { alert("Функционал ответов на данную категорию будет разработан позднее!"); }
+
+function choseCategoryForOutsideListeners() { alert("Функционал ответов на данную категорию будет разработан позднее!"); }
+
+function choseCategoryForTutors() { alert("Функционал ответов на данную категорию будет разработан позднее!"); }
 
 function scrollDownChat() {
     $("#chat-bot-messages-area-div").scrollTop($("#chat-bot-messages-area-div")[0].scrollHeight);
 }
 
 function createChatBotButton(id, text) {
-    let button = document.createElement("div");
+    let button = document.createElement("button");
     button.id = id;
     button.classList.add("chat-bot-variant-button");
     button.innerHTML = text;
@@ -185,4 +268,81 @@ function createChatbotDiv(id) {
     div.id = id;
 
     return div;
+}
+
+function renderBlockIsChatBotHelped() {
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let isChatBotHelpedQuestion = createChatBotMessage("Помог ли Вам мой ответ?");
+    let yesNoButtonsDiv = createChatbotDiv("chat-bot-yes-no-buttons");
+
+    messagesArea.append(isChatBotHelpedQuestion);
+    messagesArea.append(yesNoButtonsDiv);
+
+    let yesAnswerButton = createChatBotButton("chat-bot-yes-answer", "Да");
+    yesAnswerButton.onclick = yesUserAnswer;
+
+    let noAnswerButton = createChatBotButton("chat-bot-no-answer", "Нет");
+    noAnswerButton.onclick = noUserAnswer;
+
+    yesNoButtonsDiv.append(yesAnswerButton);
+    yesNoButtonsDiv.append(noAnswerButton);
+
+    scrollDownChat();
+}
+
+function yesUserAnswer() {
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let choseAnswer = chatBotCreateUserMessage("Да");
+    let gladForHelpMessage = createChatBotMessage("Я очень рад что смог помочь! Нужна ли ещё моя помощь?");
+    let yesNoButtonsDiv = createChatbotDiv("chat-bot-yes-no-buttons");
+
+    messagesArea.append(choseAnswer);
+    messagesArea.append(gladForHelpMessage);
+    messagesArea.append(yesNoButtonsDiv);
+
+    let yesAnswerButton = createChatBotButton("user-yes-answer", "Да");
+    yesAnswerButton.onclick = clearChatAndRenderFirstMessages;
+
+    let noAnswerButton = createChatBotButton("user-no-answer", "Нет");
+    noAnswerButton.onclick = closeChatBotDialogModalAndClearChat;
+
+    yesNoButtonsDiv.append(yesAnswerButton);
+    yesNoButtonsDiv.append(noAnswerButton);
+
+    scrollDownChat();
+}
+
+function noUserAnswer() {
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let choseAnswer = chatBotCreateUserMessage("Нет");
+    let sorryForUnhelpMessage = createChatBotMessage("Мне очень жаль что не смог помочь, но я всё время учусь! Нужна ли ещё моя помощь?");
+    let yesNoButtonsDiv = createChatbotDiv("chat-bot-yes-no-buttons");
+
+    messagesArea.append(choseAnswer);
+    messagesArea.append(sorryForUnhelpMessage);
+    messagesArea.append(yesNoButtonsDiv);
+
+    let yesAnswerButton = createChatBotButton("user-yes-answer", "Да");
+    yesAnswerButton.onclick = clearChatAndRenderFirstMessages;
+
+    let noAnswerButton = createChatBotButton("user-no-answer", "Нет");
+    noAnswerButton.onclick = closeChatBotDialogModalAndClearChat;
+
+    yesNoButtonsDiv.append(yesAnswerButton);
+    yesNoButtonsDiv.append(noAnswerButton);
+
+    scrollDownChat();
+}
+
+function clearChatAndRenderFirstMessages() {
+    let messagesArea = $("#chat-bot-messages-area-div");
+    messagesArea.empty();
+    createFirstMessages();
+}
+
+function closeChatBotDialogModalAndClearChat() {
+    let messagesArea = $("#chat-bot-messages-area-div");
+    closeChatBotDialog();
+    messagesArea.empty();
+    createFirstMessages();
 }
