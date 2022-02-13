@@ -10,7 +10,8 @@
     position:absolute;
     bottom: 56px;
     right: 6px;
-	border: 8px solid #008B8B;
+	border: 8px solid #1177d1;
+    background-color: white;
 	-webkit-border-radius: 30px;
 	-moz-border-radius: 30px;
 	border-radius: 30px;
@@ -32,7 +33,7 @@
 
 .chat-bot-text-need-help:after {
     border-color: rgba(255. 255. 255,0);
-    border-top-color: #008B8B;
+    border-top-color: #1177d1;
     border-width: 18px;
     left: 75%;
     margin-left: -18px;
@@ -40,7 +41,7 @@
 
 .chat-bot-text-need-help:before {
     border-color: rgba(255. 255. 255,0);
-    border-top-color: #008B8B;
+    border-top-color: #1177d1;
     border-width: 19px;
     left: 75%;
     margin-left: -19px;
@@ -54,8 +55,9 @@
     height: 65%;
     border: solid;
     border-width: 5px;
-    border-color: #008B8B;
+    border-color: #1177d1;
     border-radius: 10px;
+    background-color: white;
 }
 
 #close-chat-bot-dialog-modal-button {
@@ -123,8 +125,8 @@
 }
 
 p.chat-bot-messages {
-    border: 1px solid #7FFFD4;
-    background-color: #7FFFD4;
+    border: 1px solid #bfc0bf;
+    background-color: #bfc0bf;
     border-radius: 15px;
     padding: 10px;
     display: inline-block;
@@ -138,8 +140,8 @@ p.chat-bot-user-message {
 }
 
 #chat-bot-welocome-text {
-    border: 1px solid #7FFFD4;
-    background-color: #7FFFD4;
+    border: 1px solid #bfc0bf;
+    background-color: #bfc0bf;
     border-radius: 15px;
     padding: 10px;
     display: inline-block;
