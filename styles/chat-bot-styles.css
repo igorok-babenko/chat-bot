@@ -1,6 +1,6 @@
 #chat-bot-icon {
     width: 90px;
-    position:absolute;
+    position:fixed;
     bottom: 0;
     right: 0;
     cursor: pointer;
@@ -47,7 +47,7 @@
 }
 
 #chat-bot-dialog-modal {
-    position:absolute;
+    position:fixed;
     bottom: 0;
     right: 6px;
     width: 27%;
