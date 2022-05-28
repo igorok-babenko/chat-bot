@@ -126,10 +126,12 @@ function createFirstMessages() {
     let firstMessagesDiv = createChatbotDiv("first-messages-div");
     let chatBotWelcomeText = createChatBotMessage("Я робот-помощник СЕВГУ.РУ, и попытаюсь помочь Вам решить возникающие вопросы");
     let chatBotFirstQestion = createChatBotMessage("Для начала мне нужно узнать вашу роль в системе дистанционного обучения. Кем вы являетесь?");
+    let firstQuestionVariants = createChatbotDiv("first-question-variants");
 
     messagesArea.append(firstMessagesDiv);
     firstMessagesDiv.append(chatBotWelcomeText);
     firstMessagesDiv.append(chatBotFirstQestion);
+    firstMessagesDiv.append(firstQuestionVariants);
 
     let chatBotChoseTeacherButton = createChatBotButton("chat-bot-teacher-button", "Преподаватель");
     chatBotChoseTeacherButton.onclick = choseCategoryForTeachers;
@@ -143,10 +145,10 @@ function createFirstMessages() {
     let chatBotChoseTutorButton = createChatBotButton("chat-bot-tutor-button", "Тьютер");
     chatBotChoseTutorButton.onclick = choseCategoryForTutors;
 
-    firstMessagesDiv.appendChild(chatBotChoseTeacherButton);
-    firstMessagesDiv.appendChild(chatBotChoseStudentButton);
-    firstMessagesDiv.appendChild(chatBotChoseOutsideListenerButton);
-    firstMessagesDiv.appendChild(chatBotChoseTutorButton);
+    firstQuestionVariants.appendChild(chatBotChoseTeacherButton);
+    firstQuestionVariants.appendChild(chatBotChoseStudentButton);
+    firstQuestionVariants.appendChild(chatBotChoseOutsideListenerButton);
+    firstQuestionVariants.appendChild(chatBotChoseTutorButton);
 
     currentQuestionsBlockId = "first-messages-div";
     scrollDownChat();
@@ -155,15 +157,13 @@ function createFirstMessages() {
 // Begining of the block with qestions related to teachers
 
 function choseCategoryForTeachers() { 
-    $("#chat-bot-teacher-button").remove();
-    $("#chat-bot-student-button").remove();
-    $("#chat-bot-outside-listener-button").remove();
-    $("#chat-bot-tutor-button").remove();
+    $("#first-question-variants").remove();
 
     let userChose = chatBotCreateUserMessage("Преподаватель");
 
     let messagesArea = $("#chat-bot-messages-area-div");
     let firstCategoryForTeachersDiv = createChatbotDiv("first-category-for-teachers-div");
+    let firstCategoryForTeachersVariants = createChatbotDiv("first-category-for-teachers-variants");
 
     messagesArea.append(userChose);
     messagesArea.append(firstCategoryForTeachersDiv);
@@ -171,6 +171,7 @@ function choseCategoryForTeachers() {
     let firstCategoryForTeachersMessage = createChatBotMessage("Выберите пожалуйста категорию, к которой относится Ваш вопрос:");
 
     firstCategoryForTeachersDiv.appendChild(firstCategoryForTeachersMessage);
+    firstCategoryForTeachersDiv.append(firstCategoryForTeachersVariants);
 
     let chatBotChoseAuthProblemsButton = createChatBotButton("chat-bot-teachers-auth-problem-btn", "Проблемы с авторизацией");
     chatBotChoseAuthProblemsButton.onclick = answerForTeacherAuthProblem;
@@ -190,26 +191,21 @@ function choseCategoryForTeachers() {
     let chatBotTeachersGroupesBreakdownProblemsButton = createChatBotButton("teachers-groupes-breakdown-problem-btn", "Проблемы с разбиением групп на подгруппы");
     chatBotTeachersGroupesBreakdownProblemsButton.onclick = choseSubcategoryForTeacherGroupesBreakdownProblems;
 
-    firstCategoryForTeachersDiv.appendChild(chatBotChoseAuthProblemsButton);
-    firstCategoryForTeachersDiv.appendChild(chatBotSetupElementsProblemButton);
-    firstCategoryForTeachersDiv.appendChild(chatBotEncrollmentProblemsButton);
-    firstCategoryForTeachersDiv.appendChild(chatBotTeachersGradebookProblemsButton);
-    firstCategoryForTeachersDiv.appendChild(chatBotTeachersQuestionsBankProblemsButton);
-    firstCategoryForTeachersDiv.appendChild(chatBotTeachersGroupesBreakdownProblemsButton);
+    firstCategoryForTeachersVariants.appendChild(chatBotChoseAuthProblemsButton);
+    firstCategoryForTeachersVariants.appendChild(chatBotSetupElementsProblemButton);
+    firstCategoryForTeachersVariants.appendChild(chatBotEncrollmentProblemsButton);
+    firstCategoryForTeachersVariants.appendChild(chatBotTeachersGradebookProblemsButton);
+    firstCategoryForTeachersVariants.appendChild(chatBotTeachersQuestionsBankProblemsButton);
+    firstCategoryForTeachersVariants.appendChild(chatBotTeachersGroupesBreakdownProblemsButton);
 
     currentQuestionsBlockId = "first-category-for-teachers-div";
     scrollDownChat();
- }
+}
 
- function answerForTeacherAuthProblem() {
+function answerForTeacherAuthProblem() {
     let userChose =  chatBotCreateUserMessage($("#chat-bot-teachers-auth-problem-btn").text());
 
-    $("#chat-bot-teachers-auth-problem-btn").remove();
-    $("#teachers-setup-elements-problem-btn").remove();
-    $("#chat-bot-teachers-encrollment-problem-btn").remove();
-    $("#teachers-gradebook-problem-btn").remove();
-    $("#teachers-questions-bank-problem-btn").remove();
-    $("#teachers-groupes-breakdown-problem-btn").remove();
+    $("#first-category-for-teachers-variants").remove();
 
     let messagesArea = $("#chat-bot-messages-area-div");
     let answerForTeacherAuthProblemDiv = createChatbotDiv("answer-for-teachers-auth-problems-div");
@@ -222,17 +218,71 @@ function choseCategoryForTeachers() {
 
     setTimeout(renderBlockIsChatBotHelped, 5000);
     scrollDownChat();
- }
+}
 
- function choseSubcategoryForTeacherSetupElements() {}
 
- function choseSubcategoryForTeacherEncrollmentProblems() {}
+// Begining of the block with qestions related to setup elements
+function choseSubcategoryForTeacherSetupElements() {
+    let userChose = chatBotCreateUserMessage($("#teachers-setup-elements-problem-btn").text());
 
- function choseSubcategoryForTeacherGradebookProblems() {}
+    $("#first-category-for-teachers-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForSetupElementsDiv = createChatbotDiv("subcategory-for-setup-elements-div");
+    let subcategoryForSetupElementsVariants = createChatbotDiv("subcategory-for-setup-elements-variants");
 
- function choseSubcategoryForTeacherQuestionsBankProblems() {}
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForSetupElementsDiv);
 
- function choseSubcategoryForTeacherGroupesBreakdownProblems() {}
+    let subcategoryForSetupElementsMessage = createChatBotMessage("Выберите пожалуйста элемент, с которым возникли проблемы:");
+
+    subcategoryForSetupElementsDiv.appendChild(subcategoryForSetupElementsMessage);
+    subcategoryForSetupElementsDiv.append(subcategoryForSetupElementsVariants);
+
+    let chatBotSetupExercisesButton = createChatBotButton("chat-bot-setup-exercises-problem-btn", "Как настроить элемент 'Задание'?");
+    chatBotSetupExercisesButton.onclick = answerForSetupExercises;
+
+    let chatBotSetupForumButton = createChatBotButton("chat-bot-setup-forum-problem-btn", "Как настроить элемент 'Форум'?");
+    chatBotSetupForumButton.onclick = answerForSetupForum;
+
+    let chatBotSetupLectureButton = createChatBotButton("chat-bot-setup-lecture-problem-btn", "Как настроить элемент 'Электронная лекция'?");
+    chatBotSetupLectureButton.onclick = answerForSetupLecture;
+
+    let chatBotSetupSeminarButton = createChatBotButton("chat-bot-setup-seminar-problem-btn", "Как настроить элемент 'Семинар'?");
+    chatBotSetupSeminarButton.onclick = answerForSetupSeminar;
+
+    let chatBotSetupTestButton = createChatBotButton("chat-bot-setup-test-problem-btn", "Как настроить элемент 'Тест'?");
+    chatBotSetupTestButton.onclick = answerForSetupTest;
+
+    subcategoryForSetupElementsVariants.appendChild(chatBotSetupExercisesButton);
+    subcategoryForSetupElementsVariants.appendChild(chatBotSetupForumButton);
+    subcategoryForSetupElementsVariants.appendChild(chatBotSetupLectureButton);
+    subcategoryForSetupElementsVariants.appendChild(chatBotSetupSeminarButton);
+    subcategoryForSetupElementsVariants.appendChild(chatBotSetupTestButton);
+
+    currentQuestionsBlockId = "subcategory-for-setup-elements-div";
+    scrollDownChat();
+}
+
+function answerForSetupExercises() { console.log("Exersizes!"); }
+
+function answerForSetupForum() { console.log("Forum!"); }
+
+function answerForSetupLecture() { console.log("Lecture!"); }
+
+function answerForSetupSeminar() { console.log("Seminar!"); }
+
+function answerForSetupTest() { console.log("Test!"); }
+
+// End of the block with qestions related to setup elements
+
+function choseSubcategoryForTeacherEncrollmentProblems() {}
+
+function choseSubcategoryForTeacherGradebookProblems() {}
+
+function choseSubcategoryForTeacherQuestionsBankProblems() {}
+
+function choseSubcategoryForTeacherGroupesBreakdownProblems() {}
 
 // End of the block with qestions related to teachers
 
