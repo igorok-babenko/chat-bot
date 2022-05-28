@@ -5,10 +5,10 @@ $(document).ready(function(){
 function runChatBot() {
     let currentQuestionsBlockId = "";
     let chatBotIconLocation = "images/chat-bot-icon.jpg";
-    let chatBotSendMessageiconLocation = "images/chat-bot-send-message-button.png";
+    let chatBotSendMessageIconLocation = "images/chat-bot-send-message-button.png";
 
     createChatBotIcon(chatBotIconLocation);
-    createChatBotDialogModal(chatBotSendMessageiconLocation);
+    createChatBotDialogModal(chatBotSendMessageIconLocation);
 }
 
 function createChatBotIcon(chatBotIconLocation) {
@@ -38,7 +38,7 @@ function createChatBotIcon(chatBotIconLocation) {
     });
 }
 
-function createChatBotDialogModal(chatBotSendMessageiconLocation) {
+function createChatBotDialogModal(chatBotSendMessageIconLocation) {
     let chatBotDialogModal = document.createElement("div");
     chatBotDialogModal.id = "chat-bot-dialog-modal";
     chatBotDialogModal.hidden = true;
@@ -61,7 +61,7 @@ function createChatBotDialogModal(chatBotSendMessageiconLocation) {
 
     let chatBotSendMessageButton = document.createElement("img");
     chatBotSendMessageButton.id = "chat-bot-send-message-button";
-    chatBotSendMessageButton.src = chatBotSendMessageiconLocation;
+    chatBotSendMessageButton.src = chatBotSendMessageIconLocation;
     chatBotSendMessageButton.alt = "Найти";
     chatBotSendMessageButton.onclick = chatBotFindQuestion;
 
