@@ -169,3 +169,52 @@ div.user-message-div {
 .chat-bot-variant-button:hover {
     opacity: 0.5;
 }
+
+@media screen and (max-width: 992px) {
+    #chat-bot-icon { width: 200px; }
+
+    #close-chat-bot-dialog-modal-button { opacity: 1; }
+
+    #close-chat-bot-dialog-modal-button:before, #close-chat-bot-dialog-modal-button:after {
+        left: 0px;
+        bottom: 5px;
+        height: 75px;
+        width: 5px;
+    }
+
+    #chat-bot-dialog-modal {
+        right: 6px;
+        width: 80%;
+        height: 70%;
+    }
+
+    .chat-bot-text-need-help {
+        bottom: 150px;
+        right: 30px;
+        padding: 10px;
+    }
+
+    #chat-bot-send-message-div {
+        position: absolute;
+        height: 70px;
+        width: 100%;
+        bottom: 8px;
+        border-top: solid 1px #C0C0C0;
+    }
+
+    #chat-bot-send-message-text {
+        font-size: 25px;
+    }
+
+    p.chat-bot-messages {
+        font-size: 25px;
+    }
+
+    .chat-bot-variant-button {
+        font-size: 25px;
+    }
+
+    .chat-bot-user-message {
+        font-size: 25px;
+    }
+}
