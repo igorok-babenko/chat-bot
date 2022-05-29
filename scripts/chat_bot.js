@@ -374,98 +374,48 @@ function choseSubcategoryForTeacherSetupElements() {
 }
 
 function answerForSetupExercises() {
-    let userChose =  chatBotCreateUserMessage($("#chat-bot-setup-exercises-problem-btn").text());
+    let userChoseText =  $("#chat-bot-setup-exercises-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-elements-variants",
+        answerDivID = "answer-for-setup-exersizes-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1041'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
 
-    $("#subcategory-for-setup-elements-variants").remove();
-
-    let messagesArea = $("#chat-bot-messages-area-div");
-    let answerForSetupExersizesDiv = createChatbotDiv("answer-for-setup-exersizes-div");
-
-    messagesArea.append(userChose);
-    messagesArea.append(answerForSetupExersizesDiv);
-
-    let answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1041'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
-    let answerSetupExersizesProblems = createChatBotMessage(answerMessage);
-    answerForSetupExersizesDiv.appendChild(answerSetupExersizesProblems);
-
-    setTimeout(renderBlockIsChatBotHelped, 5000);
-    scrollDownChat();
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
 
 function answerForSetupForum() {
-    let userChose =  chatBotCreateUserMessage($("#chat-bot-setup-forum-problem-btn").text());
+    let userChoseText =  $("#chat-bot-setup-forum-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-elements-variants",
+        answerDivID = "answer-for-setup-forum-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1024'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
 
-    $("#subcategory-for-setup-elements-variants").remove();
-
-    let messagesArea = $("#chat-bot-messages-area-div");
-    let answerForSetupForumDiv = createChatbotDiv("answer-for-setup-forum-div");
-
-    messagesArea.append(userChose);
-    messagesArea.append(answerForSetupForumDiv);
-
-    let answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1024'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
-    let answerSetupForumProblems = createChatBotMessage(answerMessage);
-    answerForSetupForumDiv.appendChild(answerSetupForumProblems);
-
-    setTimeout(renderBlockIsChatBotHelped, 5000);
-    scrollDownChat();
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
 
 function answerForSetupLecture() {
-    let userChose =  chatBotCreateUserMessage($("#chat-bot-setup-lecture-problem-btn").text());
+    let userChoseText =  $("#chat-bot-setup-lecture-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-elements-variants",
+        answerDivID = "answer-for-setup-lecture-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1036'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
 
-    $("#subcategory-for-setup-elements-variants").remove();
-
-    let messagesArea = $("#chat-bot-messages-area-div");
-    let answerForSetupLectureDiv = createChatbotDiv("answer-for-setup-lecture-div");
-
-    messagesArea.append(userChose);
-    messagesArea.append(answerForSetupLectureDiv);
-
-    let answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1036'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
-    let answerSetupLectureProblems = createChatBotMessage(answerMessage);
-    answerForSetupLectureDiv.appendChild(answerSetupLectureProblems);
-
-    setTimeout(renderBlockIsChatBotHelped, 5000);
-    scrollDownChat();
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
 
 function answerForSetupSeminar() {
-    let userChose =  chatBotCreateUserMessage($("#chat-bot-setup-seminar-problem-btn").text());
+    let userChoseText =  $("#chat-bot-setup-seminar-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-elements-variants",
+        answerDivID = "answer-for-setup-seminar-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1043'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
 
-    $("#subcategory-for-setup-elements-variants").remove();
-
-    let messagesArea = $("#chat-bot-messages-area-div");
-    let answerForSetupSeminarDiv = createChatbotDiv("answer-for-setup-seminar-div");
-
-    messagesArea.append(userChose);
-    messagesArea.append(answerForSetupSeminarDiv);
-
-    let answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1043'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
-    let answerSetupSeminarProblems = createChatBotMessage(answerMessage);
-    answerForSetupSeminarDiv.appendChild(answerSetupSeminarProblems);
-
-    setTimeout(renderBlockIsChatBotHelped, 5000);
-    scrollDownChat();
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
 
 function answerForSetupTest() {
-    let userChose =  chatBotCreateUserMessage($("#chat-bot-setup-test-problem-btn").text());
+    let userChoseText =  $("#chat-bot-setup-test-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-elements-variants",
+        answerDivID = "answer-for-setup-test-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1057'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
 
-    $("#subcategory-for-setup-elements-variants").remove();
-
-    let messagesArea = $("#chat-bot-messages-area-div");
-    let answerForSetupTestDiv = createChatbotDiv("answer-for-setup-test-div");
-
-    messagesArea.append(userChose);
-    messagesArea.append(answerForSetupTestDiv);
-
-    let answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1057'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
-    let answerSetupTestProblems = createChatBotMessage(answerMessage);
-    answerForSetupTestDiv.appendChild(answerSetupTestProblems);
-
-    setTimeout(renderBlockIsChatBotHelped, 5000);
-    scrollDownChat();
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
 
 // End of the block with qestions related to setup elements
