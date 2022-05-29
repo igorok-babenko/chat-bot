@@ -174,7 +174,7 @@ function choseCategoryForTeachers() {
     firstCategoryForTeachersDiv.append(firstCategoryForTeachersVariants);
 
     let chatBotChoseAuthProblemsButton = createChatBotButton("chat-bot-teachers-auth-problem-btn", "Проблемы с авторизацией");
-    chatBotChoseAuthProblemsButton.onclick = answerForTeacherAuthProblem;
+    chatBotChoseAuthProblemsButton.onclick = choseSubcategoryForTeacherAuthProblems;
 
     let chatBotSetupElementsProblemButton = createChatBotButton("teachers-setup-elements-problem-btn", "Проблемы с настройкой элементов курса");
     chatBotSetupElementsProblemButton.onclick = choseSubcategoryForTeacherSetupElements;
@@ -202,24 +202,133 @@ function choseCategoryForTeachers() {
     scrollDownChat();
 }
 
-function answerForTeacherAuthProblem() {
+// Begining of the block with qestions related to teacher auth problems
+function choseSubcategoryForTeacherAuthProblems() {
     let userChose =  chatBotCreateUserMessage($("#chat-bot-teachers-auth-problem-btn").text());
 
     $("#first-category-for-teachers-variants").remove();
 
     let messagesArea = $("#chat-bot-messages-area-div");
-    let answerForTeacherAuthProblemDiv = createChatbotDiv("answer-for-teachers-auth-problems-div");
+    let subcategoryForTeachersAuthProblemsDiv = createChatbotDiv("subcategory-for-teachers-auth-problems-div");
+    let subcategoryForTeachersAuthProblemsVariants = createChatbotDiv("subcategory-for-teachers-auth-problems-variants");
 
     messagesArea.append(userChose);
-    messagesArea.append(answerForTeacherAuthProblemDiv);
+    messagesArea.append(subcategoryForTeachersAuthProblemsDiv);
 
-    let answerForTeacherAuthProblems = createChatBotMessage("Тут будет стандартный ответ на вопрос об авторизации");
-    answerForTeacherAuthProblemDiv.appendChild(answerForTeacherAuthProblems);
+    let subcategoryForTeacherAuthProblemsMessage = createChatBotMessage("Вы являетесь новым пользователем?");
 
-    setTimeout(renderBlockIsChatBotHelped, 5000);
+    subcategoryForTeachersAuthProblemsDiv.appendChild(subcategoryForTeacherAuthProblemsMessage);
+    subcategoryForTeachersAuthProblemsDiv.append(subcategoryForTeachersAuthProblemsVariants);
+
+    let chatBotSubcategoryForNewAccountButton = createChatBotButton("chat-bot-new-account-btn", "Я новый пользователь");
+    chatBotSubcategoryForNewAccountButton.onclick = subcategoryForNewAccountAuthQuestions;
+
+    let chatBotSubcategoryForExistsAccountButton = createChatBotButton("chat-bot-exists-account-btn", "У меня уже есть аккаунт");
+    chatBotSubcategoryForExistsAccountButton.onclick = subcategoryForExistsAccountAuthQuestions;
+   
+    subcategoryForTeachersAuthProblemsVariants.appendChild(chatBotSubcategoryForNewAccountButton);
+    subcategoryForTeachersAuthProblemsVariants.appendChild(chatBotSubcategoryForExistsAccountButton);
+
+    currentQuestionsBlockId = "subcategory-for-teachers-auth-problems-div";
     scrollDownChat();
 }
 
+function subcategoryForNewAccountAuthQuestions() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-new-account-btn").text());
+
+    $("#subcategory-for-teachers-auth-problems-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForNewAccountAuthQuestionsDiv = createChatbotDiv("subcategory-for-new-account-auth-questions-div");
+    let subcategoryForNewAccountAuthQuestionVariants = createChatbotDiv("subcategory-for-new-account-auth-questions-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForNewAccountAuthQuestionsDiv);
+
+    let subcategoryForNewAccountAuthQuestionsMessage = createChatBotMessage("У Вас уже есть корпоративная почта?");
+
+    subcategoryForNewAccountAuthQuestionsDiv.appendChild(subcategoryForNewAccountAuthQuestionsMessage);
+    subcategoryForNewAccountAuthQuestionsDiv.append(subcategoryForNewAccountAuthQuestionVariants);
+
+    let userHaveCorporateEmailButton = createChatBotButton("chat-bot-have-corporate-email-btn", "Да, у меня уже есть корпоративная почта");
+    userHaveCorporateEmailButton.onclick = answerWhenUserHaveCorporateEmail;
+
+    let userHaveNotCorporateEmailButton = createChatBotButton("chat-bot-have-not-corporate-email-btn", "Нет, у меня ещё нет корпоративной почты");
+    userHaveNotCorporateEmailButton.onclick = answerWhenUserHaveNotCorporateEmail;
+
+    subcategoryForNewAccountAuthQuestionVariants.appendChild(userHaveCorporateEmailButton);
+    subcategoryForNewAccountAuthQuestionVariants.appendChild(userHaveNotCorporateEmailButton);
+
+    currentQuestionsBlockId = "subcategory-for-new-account-auth-questions-div";
+    scrollDownChat();
+}
+
+function answerWhenUserHaveCorporateEmail() {
+    let userChoseText =  $("#chat-bot-have-corporate-email-btn").text(),
+        removeVariantsID = "subcategory-for-new-account-auth-questions-variants",
+        answerDivID = "anwer-for-teachers-auth-problems-having-corporate-email-div",
+        answerMessage = "Отправьте пожалуйста запрос на moodle_support@sevsu.ru";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerWhenUserHaveNotCorporateEmail() {
+    let userChoseText =  $("#chat-bot-have-not-corporate-email-btn").text(),
+    removeVariantsID = "subcategory-for-new-account-auth-questions-variants",
+    answerDivID = "anwer-for-teachers-auth-problems-have-not-corporate-email-div",
+    answerMessage = "Вам необходимо заполнить <span><a href='docs/form-for-create-corporate-email.pdf'>форму</a></span> и отнести её в ДИС";
+
+chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage); 
+}
+
+function subcategoryForExistsAccountAuthQuestions() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-exists-account-btn").text());
+
+    $("#subcategory-for-teachers-auth-problems-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForExistsAccountAuthQuestionsDiv = createChatbotDiv("subcategory-for-exists-account-auth-questions-div");
+    let subcategoryForExistsAccountAuthQuestionVariants = createChatbotDiv("subcategory-for-exists-account-auth-questions-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForExistsAccountAuthQuestionsDiv);
+
+    let subcategoryForExistsAccountAuthQuestionsMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForExistsAccountAuthQuestionsDiv.appendChild(subcategoryForExistsAccountAuthQuestionsMessage);
+    subcategoryForExistsAccountAuthQuestionsDiv.append(subcategoryForExistsAccountAuthQuestionVariants);
+
+    let userForgotPasswordButton = createChatBotButton("chat-bot-teacher-forgot-password-btn", "Забыли пароль?");
+    userForgotPasswordButton.onclick = answerWhenTeacherForgotPassword;
+
+    let userBlockedButton = createChatBotButton("chat-bot-teacher-blocked-btn", "Моя учетная запись заблокирована");
+    userBlockedButton.onclick = answerWhenTeacherBlocked;
+
+    subcategoryForExistsAccountAuthQuestionVariants.appendChild(userForgotPasswordButton);
+    subcategoryForExistsAccountAuthQuestionVariants.appendChild(userBlockedButton);
+
+    currentQuestionsBlockId = "subcategory-for-exists-account-auth-questions-div";
+    scrollDownChat();
+}
+
+function answerWhenTeacherForgotPassword() {
+    let userChoseText =  $("#chat-bot-teacher-forgot-password-btn").text(),
+        removeVariantsID = "subcategory-for-exists-account-auth-questions-variants",
+        answerDivID = "anwer-for-teacher-forgot-password-div",
+        answerMessage = "Вопспользуйтесь функцией восстановления пароля (на странице авторизации)";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerWhenTeacherBlocked() {
+    let userChoseText =  $("#chat-bot-teacher-blocked-btn").text(),
+        removeVariantsID = "subcategory-for-exists-account-auth-questions-variants",
+        answerDivID = "anwer-for-teacher-blocked-div",
+        answerMessage = "Отправьте пожалуйста запрос на moodle_support@sevsu.ru";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+// End of the block with qestions related to teacher auth problems
 
 // Begining of the block with qestions related to setup elements
 function choseSubcategoryForTeacherSetupElements() {
@@ -480,4 +589,22 @@ function closeChatBotDialogModalAndClearChat() {
     closeChatBotDialog();
     messagesArea.empty();
     createFirstMessages();
+}
+
+function chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage) {
+    let userChose =  chatBotCreateUserMessage(`${userChoseText}`);
+
+    $(`#${removeVariantsID}`).remove();
+
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let answerDiv = createChatbotDiv(`${answerDivID}`);
+
+    messagesArea.append(userChose);
+    messagesArea.append(answerDiv);
+
+    let answerSetupExersizesProblems = createChatBotMessage(answerMessage);
+    answerDiv.appendChild(answerSetupExersizesProblems);
+
+    setTimeout(renderBlockIsChatBotHelped, 5000);
+    scrollDownChat();
 }
