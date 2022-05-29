@@ -332,10 +332,10 @@ function answerWhenTeacherBlocked() {
 
 // Begining of the block with qestions related to setup elements
 function choseSubcategoryForTeacherSetupElements() {
-    let userChose = chatBotCreateUserMessage($("#teachers-setup-elements-problem-btn").text());
+    let userChose =  chatBotCreateUserMessage($("#teachers-setup-elements-problem-btn").text());
 
     $("#first-category-for-teachers-variants").remove();
-    
+
     let messagesArea = $("#chat-bot-messages-area-div");
     let subcategoryForSetupElementsDiv = createChatbotDiv("subcategory-for-setup-elements-div");
     let subcategoryForSetupElementsVariants = createChatbotDiv("subcategory-for-setup-elements-variants");
@@ -343,10 +343,48 @@ function choseSubcategoryForTeacherSetupElements() {
     messagesArea.append(userChose);
     messagesArea.append(subcategoryForSetupElementsDiv);
 
-    let subcategoryForSetupElementsMessage = createChatBotMessage("Выберите пожалуйста элемент, с которым возникли проблемы:");
+    let subcategoryForSetupElementsMesage = createChatBotMessage("Уточните пожалуйста раздел элементов, с которыми возникла проблема:");
 
-    subcategoryForSetupElementsDiv.appendChild(subcategoryForSetupElementsMessage);
+    subcategoryForSetupElementsDiv.appendChild(subcategoryForSetupElementsMesage);
     subcategoryForSetupElementsDiv.append(subcategoryForSetupElementsVariants);
+
+    let subcategoryForSetupEvaluatedElementsButton = createChatBotButton("chat-bot-setup-evaluated-elements-btn", "Проблемы с оцениваемыми элементами");
+    subcategoryForSetupEvaluatedElementsButton.onclick = choseSubcategoryForSetupEvaluatedElements;
+
+    let subcategoryForSetupNonEvaluatedElementsButton = createChatBotButton("chat-bot-setup-non-evaluated-elements-btn", "Проблемы с неоцениваемыми элементами");
+    subcategoryForSetupNonEvaluatedElementsButton.onclick = choseSubcategoryForSetupNonEvaluatedElements;
+
+    let subcategoryForSetupExternalResourcesButton = createChatBotButton("chat-bot-setup-external-resources-btn", "Проблемы с настройкой элементов внешних ресурсов (BBB, ЭБС)");
+    subcategoryForSetupExternalResourcesButton.onclick = choseSubcategoryForSetupExternalResources;
+
+    let subcategoryForSetupInteractiveElementsButton = createChatBotButton("chat-bot-setup-interactive-elements-btn", "Проблемы с интерактивными элементами");
+    subcategoryForSetupInteractiveElementsButton.onclick = choseSubcategoryForSetupInteractiveResources;
+
+    subcategoryForSetupElementsVariants.appendChild(subcategoryForSetupEvaluatedElementsButton);
+    subcategoryForSetupElementsVariants.appendChild(subcategoryForSetupNonEvaluatedElementsButton);
+    subcategoryForSetupElementsVariants.appendChild(subcategoryForSetupExternalResourcesButton);
+    subcategoryForSetupElementsVariants.appendChild(subcategoryForSetupInteractiveElementsButton);
+
+    currentQuestionsBlockId = "subcategory-for-setup-elements-div";
+    scrollDownChat();
+}
+
+function choseSubcategoryForSetupEvaluatedElements() {
+    let userChose = chatBotCreateUserMessage($("#teachers-setup-elements-problem-btn").text());
+
+    $("#first-category-for-teachers-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForSetupEvaluatedElementsDiv = createChatbotDiv("subcategory-for-setup-evaluated-elements-div");
+    let subcategoryForSetupEvaluatedElementsVariants = createChatbotDiv("subcategory-for-setup-evaluated-elements-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForSetupEvaluatedElementsDiv);
+
+    let subcategoryForSetupEvaluatedElementsMessage = createChatBotMessage("Выберите пожалуйста элемент, с которым возникли проблемы:");
+
+    subcategoryForSetupEvaluatedElementsDiv.appendChild(subcategoryForSetupEvaluatedElementsMessage);
+    subcategoryForSetupEvaluatedElementsDiv.append(subcategoryForSetupEvaluatedElementsVariants);
 
     let chatBotSetupExercisesButton = createChatBotButton("chat-bot-setup-exercises-problem-btn", "Как настроить элемент 'Задание'?");
     chatBotSetupExercisesButton.onclick = answerForSetupExercises;
@@ -363,13 +401,13 @@ function choseSubcategoryForTeacherSetupElements() {
     let chatBotSetupTestButton = createChatBotButton("chat-bot-setup-test-problem-btn", "Как настроить элемент 'Тест'?");
     chatBotSetupTestButton.onclick = answerForSetupTest;
 
-    subcategoryForSetupElementsVariants.appendChild(chatBotSetupExercisesButton);
-    subcategoryForSetupElementsVariants.appendChild(chatBotSetupForumButton);
-    subcategoryForSetupElementsVariants.appendChild(chatBotSetupLectureButton);
-    subcategoryForSetupElementsVariants.appendChild(chatBotSetupSeminarButton);
-    subcategoryForSetupElementsVariants.appendChild(chatBotSetupTestButton);
+    subcategoryForSetupEvaluatedElementsVariants.appendChild(chatBotSetupExercisesButton);
+    subcategoryForSetupEvaluatedElementsVariants.appendChild(chatBotSetupForumButton);
+    subcategoryForSetupEvaluatedElementsVariants.appendChild(chatBotSetupLectureButton);
+    subcategoryForSetupEvaluatedElementsVariants.appendChild(chatBotSetupSeminarButton);
+    subcategoryForSetupEvaluatedElementsVariants.appendChild(chatBotSetupTestButton);
 
-    currentQuestionsBlockId = "subcategory-for-setup-elements-div";
+    currentQuestionsBlockId = "subcategory-for-setup-evaluated-elements-div";
     scrollDownChat();
 }
 
@@ -417,6 +455,12 @@ function answerForSetupTest() {
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
+
+function choseSubcategoryForSetupNonEvaluatedElements() {}
+
+function choseSubcategoryForSetupExternalResources() {}
+
+function choseSubcategoryForSetupInteractiveResources() {}
 
 // End of the block with qestions related to setup elements
 
