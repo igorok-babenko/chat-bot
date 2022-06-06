@@ -142,13 +142,9 @@ function createFirstMessages() {
     let chatBotChoseOutsideListenerButton = createChatBotButton("chat-bot-outside-listener-button", "Внешний слушатель");
     chatBotChoseOutsideListenerButton.onclick = choseCategoryForOutsideListeners;
 
-    let chatBotChoseTutorButton = createChatBotButton("chat-bot-tutor-button", "Тьютер");
-    chatBotChoseTutorButton.onclick = choseCategoryForTutors;
-
     firstQuestionVariants.appendChild(chatBotChoseTeacherButton);
     firstQuestionVariants.appendChild(chatBotChoseStudentButton);
     firstQuestionVariants.appendChild(chatBotChoseOutsideListenerButton);
-    firstQuestionVariants.appendChild(chatBotChoseTutorButton);
 
     currentQuestionsBlockId = "first-messages-div";
     scrollDownChat();
@@ -182,14 +178,14 @@ function choseCategoryForTeachers() {
     let chatBotEncrollmentProblemsButton = createChatBotButton("chat-bot-teachers-encrollment-problem-btn", "Проблемы с зачислением пользователей на курс/отчислением пользователей из курса");
     chatBotEncrollmentProblemsButton.onclick = choseSubcategoryForTeacherEncrollmentProblems;
 
-    let chatBotTeachersGradebookProblemsButton = createChatBotButton("teachers-gradebook-problem-btn", "Проблемы с настройкой журнала оценок");
-    chatBotTeachersGradebookProblemsButton.onclick = choseSubcategoryForTeacherGradebookProblems;
+    let chatBotTeachersGradebookProblemsButton = createChatBotButton("teachers-gradebook-problem-btn", "Как настроить журнал оценок?");
+    chatBotTeachersGradebookProblemsButton.onclick = answerForTeacherGradebookProblems;
 
-    let chatBotTeachersQuestionsBankProblemsButton = createChatBotButton("teachers-questions-bank-problem-btn", "Проблемы с настройкой банка вопросов");
+    let chatBotTeachersQuestionsBankProblemsButton = createChatBotButton("teachers-questions-bank-problem-btn", "Как настроить банк вопросов?");
     chatBotTeachersQuestionsBankProblemsButton.onclick = choseSubcategoryForTeacherQuestionsBankProblems;
 
-    let chatBotTeachersGroupesBreakdownProblemsButton = createChatBotButton("teachers-groupes-breakdown-problem-btn", "Проблемы с разбиением групп на подгруппы");
-    chatBotTeachersGroupesBreakdownProblemsButton.onclick = choseSubcategoryForTeacherGroupesBreakdownProblems;
+    let chatBotTeachersGroupesBreakdownProblemsButton = createChatBotButton("teachers-groupes-breakdown-problem-btn", "Как разбить группы на подгруппы?");
+    chatBotTeachersGroupesBreakdownProblemsButton.onclick = answerForTeacherGroupesBreakdownProblems;
 
     firstCategoryForTeachersVariants.appendChild(chatBotChoseAuthProblemsButton);
     firstCategoryForTeachersVariants.appendChild(chatBotSetupElementsProblemButton);
@@ -638,24 +634,144 @@ function answerForSetupSCORM() {
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
-
 // End of the block with qestions related to setup elements
 
-function choseSubcategoryForTeacherEncrollmentProblems() {}
+// Begining of the block with qestions related to encrollment problems
+function choseSubcategoryForTeacherEncrollmentProblems() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-teachers-encrollment-problem-btn").text());
 
-function choseSubcategoryForTeacherGradebookProblems() {}
+    $("#first-category-for-teachers-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForTeachersEncrollmentDiv = createChatbotDiv("subcategory-for-teachers-encrollment-div");
+    let subcategoryForTeachersEncrollmentVariants = createChatbotDiv("subcategory-for-teachers-encrollment-variants");
 
-function choseSubcategoryForTeacherQuestionsBankProblems() {}
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForTeachersEncrollmentDiv);
 
-function choseSubcategoryForTeacherGroupesBreakdownProblems() {}
+    let subcategoryForTeachersEncrollentMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForTeachersEncrollmentDiv.appendChild(subcategoryForTeachersEncrollentMessage);
+    subcategoryForTeachersEncrollmentDiv.append(subcategoryForTeachersEncrollmentVariants);
+
+    let chatBotGlobalGroupEncrollmentButton = createChatBotButton("chat-bot-global-group-encrollment-problem-btn", "Как зачислить глобальную группу?");
+    chatBotGlobalGroupEncrollmentButton.onclick = answerForGlobalGroupEncrollment;
+
+    let chatBotSpecialUsersEncrollentButton = createChatBotButton("chat-bot-special-users-encrollment-problem-btn", "Как зачислить определенных пользователей?");
+    chatBotSpecialUsersEncrollentButton.onclick = answerForSpecialUsersEncrollent;
+
+    let chatBotDeleteExtraUsersButton = createChatBotButton("chat-bot-delete-extra-users-problem-btn", "Как удалить лишних пользователей пользователей?");
+    chatBotDeleteExtraUsersButton.onclick = answerForDeleteExtraUsers;
+
+    subcategoryForTeachersEncrollmentVariants.appendChild(chatBotGlobalGroupEncrollmentButton);
+    subcategoryForTeachersEncrollmentVariants.appendChild(chatBotSpecialUsersEncrollentButton);
+    subcategoryForTeachersEncrollmentVariants.appendChild(chatBotDeleteExtraUsersButton);
+
+    currentQuestionsBlockId = "subcategory-for-teachers-encrollment-div";
+    scrollDownChat();
+}
+
+function answerForGlobalGroupEncrollment() {
+    let userChoseText =  $("#chat-bot-global-group-encrollment-problem-btn").text(),
+        removeVariantsID = "subcategory-for-teachers-encrollment-variants",
+        answerDivID = "answer-for-global-group-encrollment-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1052&pageid=1587'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForSpecialUsersEncrollent() {
+    let userChoseText =  $("#chat-bot-special-users-encrollment-problem-btn").text(),
+        removeVariantsID = "subcategory-for-teachers-encrollment-variants",
+        answerDivID = "answer-for-special-users-encrollment-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1052&pageid=1591'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForDeleteExtraUsers() {
+    let userChoseText =  $("#chat-bot-delete-extra-users-problem-btn").text(),
+        removeVariantsID = "subcategory-for-teachers-encrollment-variants",
+        answerDivID = "answer-for-delete-extra-users-div",
+        answerMessage = "К сожалению лекция по настройке библиотечных систем пока ещё находится в разработке, а пока Вы можете ознакомиться со всеми нашими материалами по работе в СДО СЕВГУ.РУ в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+// End of the block with qestions related to encrollment problems
+
+function answerForTeacherGradebookProblems() {
+    let userChoseText =  $("#teachers-gradebook-problem-btn").text(),
+        removeVariantsID = "first-category-for-teachers-variants",
+        answerDivID = "answer-for-teachers-gradebook-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1049'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+// Begining of the block with qestions related to questions bank problems
+function choseSubcategoryForTeacherQuestionsBankProblems() {
+    let userChose = chatBotCreateUserMessage($("#teachers-questions-bank-problem-btn").text());
+
+    $("#first-category-for-teachers-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForTeachersQuestionsBankDiv = createChatbotDiv("subcategory-for-teachers-questions-bank-div");
+    let subcategoryForTeachersQuestionsBankVariants = createChatbotDiv("subcategory-for-teachers-queestions-bank-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForTeachersQuestionsBankDiv);
+
+    let subcategoryForTeachersQuestionsBankMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForTeachersQuestionsBankDiv.appendChild(subcategoryForTeachersQuestionsBankMessage);
+    subcategoryForTeachersQuestionsBankDiv.append(subcategoryForTeachersQuestionsBankVariants);
+
+    let chatBotSetupCategoriesButton = createChatBotButton("chat-bot-setup-categories-problem-btn", "Как настраивать категории?");
+    chatBotSetupCategoriesButton.onclick = answerForSetupCategories;
+
+    let chatBotSetupQuestionsButton = createChatBotButton("chat-bot-setup-questions-problem-btn", "Как настраивать вопросы?");
+    chatBotSetupQuestionsButton.onclick = answerForSetupQuestions;
+
+    subcategoryForTeachersQuestionsBankVariants.appendChild(chatBotSetupCategoriesButton);
+    subcategoryForTeachersQuestionsBankVariants.appendChild(chatBotSetupQuestionsButton);
+
+    currentQuestionsBlockId = "subcategory-for-teachers-questions-bank-div";
+    scrollDownChat();
+}
+
+function answerForSetupCategories() {
+    let userChoseText =  $("#chat-bot-setup-categories-problem-btn").text(),
+        removeVariantsID = "subcategory-for-teachers-queestions-bank-variants",
+        answerDivID = "answer-for-teachers-setup-categories-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1057&pageid=1604'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForSetupQuestions() {
+    let userChoseText =  $("#chat-bot-setup-questions-problem-btn").text(),
+        removeVariantsID = "subcategory-for-teachers-queestions-bank-variants",
+        answerDivID = "answer-for-teachers-setup-questions-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1057&pageid=1605'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+// End of the block with qestions related to questions bank problems
+
+function answerForTeacherGroupesBreakdownProblems() {
+    let userChoseText =  $("#teachers-groupes-breakdown-problem-btn").text(),
+        removeVariantsID = "first-category-for-teachers-variants",
+        answerDivID = "answer-for-teachers-groupes-breakdown-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1053'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
 
 // End of the block with qestions related to teachers
 
 function choseCategoryForStudents() { alert("Функционал ответов на данную категорию будет разработан позднее!"); }
 
 function choseCategoryForOutsideListeners() { alert("Функционал ответов на данную категорию будет разработан позднее!"); }
-
-function choseCategoryForTutors() { alert("Функционал ответов на данную категорию будет разработан позднее!"); }
 
 function scrollDownChat() {
     $("#chat-bot-messages-area-div").scrollTop($("#chat-bot-messages-area-div")[0].scrollHeight);
