@@ -370,9 +370,9 @@ function choseSubcategoryForTeacherSetupElements() {
 }
 
 function choseSubcategoryForSetupEvaluatedElements() {
-    let userChose = chatBotCreateUserMessage($("#teachers-setup-elements-problem-btn").text());
+    let userChose = chatBotCreateUserMessage($("#chat-bot-setup-evaluated-elements-btn").text());
 
-    $("#first-category-for-teachers-variants").remove();
+    $("#subcategory-for-setup-elements-variants").remove();
     
     let messagesArea = $("#chat-bot-messages-area-div");
     let subcategoryForSetupEvaluatedElementsDiv = createChatbotDiv("subcategory-for-setup-evaluated-elements-div");
@@ -413,54 +413,231 @@ function choseSubcategoryForSetupEvaluatedElements() {
 
 function answerForSetupExercises() {
     let userChoseText =  $("#chat-bot-setup-exercises-problem-btn").text(),
-        removeVariantsID = "subcategory-for-setup-elements-variants",
+        removeVariantsID = "subcategory-for-setup-evaluated-elements-variants",
         answerDivID = "answer-for-setup-exersizes-div",
-        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1041'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1041'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
 
 function answerForSetupForum() {
     let userChoseText =  $("#chat-bot-setup-forum-problem-btn").text(),
-        removeVariantsID = "subcategory-for-setup-elements-variants",
+        removeVariantsID = "subcategory-for-setup-evaluated-elements-variants",
         answerDivID = "answer-for-setup-forum-div",
-        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1024'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1024'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
 
 function answerForSetupLecture() {
     let userChoseText =  $("#chat-bot-setup-lecture-problem-btn").text(),
-        removeVariantsID = "subcategory-for-setup-elements-variants",
+        removeVariantsID = "subcategory-for-setup-evaluated-elements-variants",
         answerDivID = "answer-for-setup-lecture-div",
-        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1036'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1036'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
 
 function answerForSetupSeminar() {
     let userChoseText =  $("#chat-bot-setup-seminar-problem-btn").text(),
-        removeVariantsID = "subcategory-for-setup-elements-variants",
+        removeVariantsID = "subcategory-for-setup-evaluated-elements-variants",
         answerDivID = "answer-for-setup-seminar-div",
-        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1043'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1043'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
 
 function answerForSetupTest() {
     let userChoseText =  $("#chat-bot-setup-test-problem-btn").text(),
-        removeVariantsID = "subcategory-for-setup-elements-variants",
+        removeVariantsID = "subcategory-for-setup-evaluated-elements-variants",
         answerDivID = "answer-for-setup-test-div",
-        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1057'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СУВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1057'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
 
-function choseSubcategoryForSetupNonEvaluatedElements() {}
+function choseSubcategoryForSetupNonEvaluatedElements() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-setup-non-evaluated-elements-btn").text());
 
-function choseSubcategoryForSetupExternalResources() {}
+    $("#subcategory-for-setup-elements-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForSetupNonEvaluatedElementsDiv = createChatbotDiv("subcategory-for-setup-non-evaluated-elements-div");
+    let subcategoryForSetupNonEvaluatedElementsVariants = createChatbotDiv("subcategory-for-setup-non-evaluated-elements-variants");
 
-function choseSubcategoryForSetupInteractiveResources() {}
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForSetupNonEvaluatedElementsDiv);
+
+    let subcategoryForSetupNonEvaluatedElementsMessage = createChatBotMessage("Выберите пожалуйста элемент, с которым возникли проблемы:");
+
+    subcategoryForSetupNonEvaluatedElementsDiv.appendChild(subcategoryForSetupNonEvaluatedElementsMessage);
+    subcategoryForSetupNonEvaluatedElementsDiv.append(subcategoryForSetupNonEvaluatedElementsVariants);
+
+    let chatBotSetupFileButton = createChatBotButton("chat-bot-setup-file-problem-btn", "Как настроить элемент 'Файл'?");
+    chatBotSetupFileButton.onclick = answerForSetupFile;
+
+    let chatBotSetupPageButton = createChatBotButton("chat-bot-setup-page-problem-btn", "Как настроить элемент 'Страница'?");
+    chatBotSetupPageButton.onclick = answerForSetupPage;
+
+    let chatBotSetupQuestionnaireButton = createChatBotButton("chat-bot-setup-questionnaire-problem-btn", "Как настроить элемент 'Анкета'?");
+    chatBotSetupQuestionnaireButton.onclick = answerForSetupQuestionnaire;
+
+    let chatBotSetupWikiButton = createChatBotButton("chat-bot-setup-wiki-problem-btn", "Как настроить элемент 'Вики'?");
+    chatBotSetupWikiButton.onclick = answerForSetupWiki;
+
+    let chatBotSetupHyperlinkButton = createChatBotButton("chat-bot-setup-hyperlink-problem-btn", "Как настроить элемент 'Гиперссылка'?");
+    chatBotSetupHyperlinkButton.onclick = answerForSetupHyperlink;
+
+    subcategoryForSetupNonEvaluatedElementsVariants.appendChild(chatBotSetupFileButton);
+    subcategoryForSetupNonEvaluatedElementsVariants.appendChild(chatBotSetupPageButton);
+    subcategoryForSetupNonEvaluatedElementsVariants.appendChild(chatBotSetupQuestionnaireButton);
+    subcategoryForSetupNonEvaluatedElementsVariants.appendChild(chatBotSetupWikiButton);
+    subcategoryForSetupNonEvaluatedElementsVariants.appendChild(chatBotSetupHyperlinkButton);
+
+    currentQuestionsBlockId = "subcategory-for-setup-non-evaluated-elements-div";
+    scrollDownChat();
+}
+
+function answerForSetupFile() {
+    let userChoseText =  $("#chat-bot-setup-file-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-non-evaluated-elements-variants",
+        answerDivID = "answer-for-setup-file-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1034'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForSetupPage() {
+    let userChoseText =  $("#chat-bot-setup-page-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-non-evaluated-elements-variants",
+        answerDivID = "answer-for-setup-page-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1023'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForSetupQuestionnaire() {
+    let userChoseText =  $("#chat-bot-setup-questionnaire-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-non-evaluated-elements-variants",
+        answerDivID = "answer-for-setup-questionnaire-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1045'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForSetupWiki() {
+    let userChoseText =  $("#chat-bot-setup-wiki-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-non-evaluated-elements-variants",
+        answerDivID = "answer-for-setup-wiki-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1045'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForSetupHyperlink() {
+    let userChoseText =  $("#chat-bot-setup-hyperlink-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-non-evaluated-elements-variants",
+        answerDivID = "answer-for-setup-hyperlink-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1045&pageid=1554'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function choseSubcategoryForSetupExternalResources() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-setup-external-resources-btn").text());
+
+    $("#subcategory-for-setup-elements-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForSetupExternalResourcesDiv = createChatbotDiv("subcategory-for-setup-external-resources-div");
+    let subcategoryForSetupExternalResourcesVariants = createChatbotDiv("subcategory-for-setup-external-resources-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForSetupExternalResourcesDiv);
+
+    let subcategoryForSetupExternalResourcesMessage = createChatBotMessage("Выберите пожалуйста элемент, с которым возникли проблемы:");
+
+    subcategoryForSetupExternalResourcesDiv.appendChild(subcategoryForSetupExternalResourcesMessage);
+    subcategoryForSetupExternalResourcesDiv.append(subcategoryForSetupExternalResourcesVariants);
+
+    let chatBotSetupBbbButton = createChatBotButton("chat-bot-setup-bbb-problem-btn", "Как настроить элемент 'Видеоконференция BigBlueButton'?");
+    chatBotSetupBbbButton.onclick = answerForSetupBBB;
+
+    let chatBotSetupExternalLibrariesButton = createChatBotButton("chat-bot-setup-external-libraries-problem-btn", "Как настраивать элементы внешних библиотечных систем? (Например ЭБС Лань, Юрайт и т.п.)");
+    chatBotSetupExternalLibrariesButton.onclick = answerForSetupExternalLibraries;
+
+    subcategoryForSetupExternalResourcesVariants.appendChild(chatBotSetupBbbButton);
+    subcategoryForSetupExternalResourcesVariants.appendChild(chatBotSetupExternalLibrariesButton);
+
+    currentQuestionsBlockId = "subcategory-for-setup-external-resources-div";
+    scrollDownChat();
+}
+
+function answerForSetupBBB() {
+    let userChoseText =  $("#chat-bot-setup-bbb-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-external-resources-variants",
+        answerDivID = "answer-for-setup-bbb-div",
+        answerMessage = "Вы можете посмотреть лекцию по настройке данного элемента <span><a href='https://do.sevsu.ru/mod/lesson/view.php?id=1030'>ЗДЕСЬ</a></span>. Все наши материалы по работе в СДО СЕВГУ.РУ находятся в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForSetupExternalLibraries() {
+    let userChoseText =  $("#chat-bot-setup-external-libraries-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-external-resources-variants",
+        answerDivID = "answer-for-setup-external-libraries-div",
+        answerMessage = "К сожалению лекция по настройке библиотечных систем пока ещё находится в разработке, а пока Вы можете ознакомиться со всеми нашими материалами по работе в СДО СЕВГУ.РУ в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function choseSubcategoryForSetupInteractiveResources() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-setup-interactive-elements-btn").text());
+
+    $("#subcategory-for-setup-elements-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForSetupInteractiveElementsDiv = createChatbotDiv("subcategory-for-setup-interactive-elements-div");
+    let subcategoryForSetupInteractiveElementsVariants = createChatbotDiv("subcategory-for-setup-interactive-elements-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForSetupInteractiveElementsDiv);
+
+    let subcategoryForSetupInteractiveElementsMessage = createChatBotMessage("Выберите пожалуйста элемент, с которым возникли проблемы:");
+
+    subcategoryForSetupInteractiveElementsDiv.appendChild(subcategoryForSetupInteractiveElementsMessage);
+    subcategoryForSetupInteractiveElementsDiv.append(subcategoryForSetupInteractiveElementsVariants);
+
+    let chatBotSetupH5pButton = createChatBotButton("chat-bot-setup-h5p-problem-btn", "Как настроить элемент 'H5P'?");
+    chatBotSetupH5pButton.onclick = answerForSetupH5P;
+
+    let chatBotSetupScormButton = createChatBotButton("chat-bot-setup-scorm-problem-btn", "Как настроить элемент 'Пакет SCORM'?");
+    chatBotSetupScormButton.onclick = answerForSetupSCORM;
+
+    subcategoryForSetupInteractiveElementsVariants.appendChild(chatBotSetupH5pButton);
+    subcategoryForSetupInteractiveElementsVariants.appendChild(chatBotSetupScormButton);
+
+    currentQuestionsBlockId = "subcategory-for-setup-interactive-elements-div";
+    scrollDownChat();
+}
+
+function answerForSetupH5P() {
+    let userChoseText =  $("#chat-bot-setup-h5p-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-interactive-elements-variants",
+        answerDivID = "answer-for-setup-h5p-div",
+        answerMessage = "К сожалению лекция по настройке библиотечных систем пока ещё находится в разработке, а пока Вы можете ознакомиться со всеми нашими материалами по работе в СДО СЕВГУ.РУ в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForSetupSCORM() {
+    let userChoseText =  $("#chat-bot-setup-scorm-problem-btn").text(),
+        removeVariantsID = "subcategory-for-setup-interactive-elements-variants",
+        answerDivID = "answer-for-setup-scorm-div",
+        answerMessage = "К сожалению лекция по настройке библиотечных систем пока ещё находится в разработке, а пока Вы можете ознакомиться со всеми нашими материалами по работе в СДО СЕВГУ.РУ в <span><a href='https://do.sevsu.ru/course/view.php?id=1363'>электронном курсе</a></span>.";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
 
 // End of the block with qestions related to setup elements
 
