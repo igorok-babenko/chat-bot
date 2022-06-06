@@ -771,7 +771,106 @@ function answerForTeacherGroupesBreakdownProblems() {
 
 function choseCategoryForStudents() { alert("Функционал ответов на данную категорию будет разработан позднее!"); }
 
-function choseCategoryForOutsideListeners() { alert("Функционал ответов на данную категорию будет разработан позднее!"); }
+// Begining of the block with qestions related to qoutside listeners
+function choseCategoryForOutsideListeners() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-outside-listener-button").text());
+
+    $("#first-question-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForOutsideListenersProblemsDiv = createChatbotDiv("subcategory-for-outside-listeners-problemms-div");
+    let subcategoryForOutsideListenersProblemsVariants = createChatbotDiv("subcategory-for-outside-listeners-problemms-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForOutsideListenersProblemsDiv);
+
+    let subcategoryForOutsideListenersProblemsMessage = createChatBotMessage("Выберите пожалуйста категорию вопросов, относящуюся к Вашей проблеме");
+
+    subcategoryForOutsideListenersProblemsDiv.appendChild(subcategoryForOutsideListenersProblemsMessage);
+    subcategoryForOutsideListenersProblemsDiv.append(subcategoryForOutsideListenersProblemsVariants);
+
+    let chatBotAuthProblemsButton = createChatBotButton("chat-bot-outside-users-auth-problem-btn", "Проблемы с авторизацией?");
+    chatBotAuthProblemsButton.onclick = subcategoryForOutsideUsersAuthQuestions;
+
+    let chatBotSupportInTheCourceProblemsButton = createChatBotButton("chat-bot-support-in-the-cource-problem-btn", "Проблемы с поддержкой в электронном курсе?");
+    chatBotSupportInTheCourceProblemsButton.onclick = subcategoryForSupportInTheCource;
+
+    let chatBotSertificatesProblemsButton = createChatBotButton("chat-bot-sertificates-problem-btn", "Вопросы по сертификатам");
+    chatBotSertificatesProblemsButton.onclick = subcategoryForSertificatesProblems;
+
+    subcategoryForOutsideListenersProblemsVariants.appendChild(chatBotAuthProblemsButton);
+    subcategoryForOutsideListenersProblemsVariants.appendChild(chatBotSupportInTheCourceProblemsButton);
+    subcategoryForOutsideListenersProblemsVariants.appendChild(chatBotSertificatesProblemsButton);
+
+    currentQuestionsBlockId = "subcategory-for-outside-listeners-problemms-div";
+    scrollDownChat();
+}
+
+function subcategoryForOutsideUsersAuthQuestions() {}
+
+function subcategoryForSupportInTheCource() {}
+
+function subcategoryForSertificatesProblems() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-sertificates-problem-btn").text());
+
+    $("#subcategory-for-outside-listeners-problemms-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForSertificatesProblemsDiv = createChatbotDiv("subcategory-for-sertificates-problems-div");
+    let subcategoryForSertificatesProblemsVariants = createChatbotDiv("subcategory-for-sertificates-problems-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForSertificatesProblemsDiv);
+
+    let subcategoryForSertificatesProblemsMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForSertificatesProblemsDiv.appendChild(subcategoryForSertificatesProblemsMessage);
+    subcategoryForSertificatesProblemsDiv.append(subcategoryForSertificatesProblemsVariants);
+
+    let chatBotWhenIGotSertificateButton = createChatBotButton("chat-bot-when-i-got-sertificate-btn", "Когда мне выдадут сертификат?");
+    chatBotWhenIGotSertificateButton.onclick = answerForWhenIGotSertificate;
+
+    let chatBotCanNotFindSertificateButton = createChatBotButton("chat-bot-can-not-find-sertificate-problem-btn", "Не могу найти сертификат");
+    chatBotCanNotFindSertificateButton.onclick = answerForCanNotFindSertificate;
+
+    let chatBotPaperSertificateQuestionButton = createChatBotButton("chat-bot-paper-sertificate-question-btn", "Будет ли бумажная версия сертификата?");
+    chatBotPaperSertificateQuestionButton.onclick = answerForPaperSertificateQuestion;
+
+    subcategoryForSertificatesProblemsVariants.appendChild(chatBotWhenIGotSertificateButton);
+    subcategoryForSertificatesProblemsVariants.appendChild(chatBotCanNotFindSertificateButton);
+    subcategoryForSertificatesProblemsVariants.appendChild(chatBotPaperSertificateQuestionButton);
+
+    currentQuestionsBlockId = "subcategory-for-teachers-questions-bank-div";
+    scrollDownChat();
+}
+
+function answerForWhenIGotSertificate() {
+    let userChoseText =  $("#chat-bot-when-i-got-sertificate-btn").text(),
+        removeVariantsID = "subcategory-for-sertificates-problems-variants",
+        answerDivID = "answer-for-when-i-got-sertificate-div",
+        answerMessage = "Если Ваша оценка в профиле по курсу больше 60-ти баллов, то в разделе аттестации после итогового тестирования вам доступен электронный сертификат";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForCanNotFindSertificate() {
+    let userChoseText =  $("#chat-bot-can-not-find-sertificate-problem-btn").text(),
+        removeVariantsID = "subcategory-for-sertificates-problems-variants",
+        answerDivID = "answer-for-can-not-find-sertificate-problem-div",
+        answerMessage = "Электронный сертификат располагается  в разделе аттестации после итогового тестирования";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForPaperSertificateQuestion() {
+    let userChoseText =  $("#chat-bot-paper-sertificate-question-btn").text(),
+        removeVariantsID = "subcategory-for-sertificates-problems-variants",
+        answerDivID = "answer-for-paper-sertificate-question-div",
+        answerMessage = "Обучение на курсе не предполагает выдачу бумажного сертификата";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+// End of the block with qestions related to qoutside listeners
 
 function scrollDownChat() {
     $("#chat-bot-messages-area-div").scrollTop($("#chat-bot-messages-area-div")[0].scrollHeight);
