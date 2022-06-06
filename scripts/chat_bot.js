@@ -792,7 +792,7 @@ function choseCategoryForOutsideListeners() {
     let chatBotAuthProblemsButton = createChatBotButton("chat-bot-outside-users-auth-problem-btn", "Проблемы с авторизацией?");
     chatBotAuthProblemsButton.onclick = subcategoryForOutsideUsersAuthQuestions;
 
-    let chatBotSupportInTheCourceProblemsButton = createChatBotButton("chat-bot-support-in-the-cource-problem-btn", "Проблемы с поддержкой в электронном курсе?");
+    let chatBotSupportInTheCourceProblemsButton = createChatBotButton("chat-bot-support-in-the-cource-problem-btn", "Проблемы с поддержкой в электронном курсе");
     chatBotSupportInTheCourceProblemsButton.onclick = subcategoryForSupportInTheCource;
 
     let chatBotSertificatesProblemsButton = createChatBotButton("chat-bot-sertificates-problem-btn", "Вопросы по сертификатам");
@@ -808,8 +808,70 @@ function choseCategoryForOutsideListeners() {
 
 function subcategoryForOutsideUsersAuthQuestions() {}
 
-function subcategoryForSupportInTheCource() {}
+// Begining of the block with questions about support in the cource
+function subcategoryForSupportInTheCource() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-support-in-the-cource-problem-btn").text());
 
+    $("#subcategory-for-outside-listeners-problemms-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForSupportInTheCourceProblemsDiv = createChatbotDiv("subcategory-for-support-in-the-cource-problems-div");
+    let subcategoryForSupportInTheCourceVariants = createChatbotDiv("subcategory-for-support-in-the-cource-problems-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForSupportInTheCourceProblemsDiv);
+
+    let subcategoryForSupportInTheCourceMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForSupportInTheCourceProblemsDiv.appendChild(subcategoryForSupportInTheCourceMessage);
+    subcategoryForSupportInTheCourceProblemsDiv.append(subcategoryForSupportInTheCourceVariants);
+
+    let chatBotCourceAccessProblemButton = createChatBotButton("chat-bot-cource-access-problem-btn", "Не могу попасть в электронный курс");
+    chatBotCourceAccessProblemButton.onclick = answerForCourceAccessProblem;
+
+    let chatBotFeedbackProblemButton = createChatBotButton("chat-bot-feedback-problem-btn", "Нет обратной связи в электронном курсе");
+    chatBotFeedbackProblemButton.onclick = answerForFeedbackProblem;
+
+    let chatBotPaperExtensionOfDeadlineButton = createChatBotButton("chat-bot-extension-of-deadline-question-btn", "Можно ли продлить сроки сдачи работ?");
+    chatBotPaperExtensionOfDeadlineButton.onclick = answerForExtensionOfDeadlineQuestion;
+
+    subcategoryForSupportInTheCourceVariants.appendChild(chatBotCourceAccessProblemButton);
+    subcategoryForSupportInTheCourceVariants.appendChild(chatBotFeedbackProblemButton);
+    subcategoryForSupportInTheCourceVariants.appendChild(chatBotPaperExtensionOfDeadlineButton);
+
+    currentQuestionsBlockId = "subcategory-for-support-in-the-cource-problems-div";
+    scrollDownChat();
+}
+
+function answerForCourceAccessProblem() {
+    let userChoseText =  $("#chat-bot-cource-access-problem-btn").text(),
+        removeVariantsID = "subcategory-for-support-in-the-cource-problems-variants",
+        answerDivID = "answer-for-cource-access-problem-div",
+        answerMessage = "Отправите пожалуйста запрос на kis_moodle@sevsu.ru";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForFeedbackProblem() {
+    let userChoseText =  $("#chat-bot-feedback-problem-btn").text(),
+        removeVariantsID = "subcategory-for-support-in-the-cource-problems-variants",
+        answerDivID = "answer-for-feedback-problem-div",
+        answerMessage = "Обратитесь пожалуйста к преподавателю, ведущему курс";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForExtensionOfDeadlineQuestion() {
+    let userChoseText =  $("#chat-bot-extension-of-deadline-question-btn").text(),
+        removeVariantsID = "subcategory-for-support-in-the-cource-problems-variants",
+        answerDivID = "answer-for-extension-of-deadline-problem-div",
+        answerMessage = "Этот вопрос решает только преподаватель, ведущий курс";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+// End of the block with questions about support in the cource
+
+// Begining of the block with questions about sertificetes
 function subcategoryForSertificatesProblems() {
     let userChose = chatBotCreateUserMessage($("#chat-bot-sertificates-problem-btn").text());
 
@@ -840,7 +902,7 @@ function subcategoryForSertificatesProblems() {
     subcategoryForSertificatesProblemsVariants.appendChild(chatBotCanNotFindSertificateButton);
     subcategoryForSertificatesProblemsVariants.appendChild(chatBotPaperSertificateQuestionButton);
 
-    currentQuestionsBlockId = "subcategory-for-teachers-questions-bank-div";
+    currentQuestionsBlockId = "subcategory-for-sertificates-problems-div";
     scrollDownChat();
 }
 
@@ -870,6 +932,7 @@ function answerForPaperSertificateQuestion() {
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
+// End of the block with questions about sertificetes
 // End of the block with qestions related to qoutside listeners
 
 function scrollDownChat() {
