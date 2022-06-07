@@ -995,10 +995,83 @@ function answerForStudentFindingOutsideCource() {
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
-
 // End of the block related to students finding cource problems
 
-function choseSubcategoryForComplettingExercisesProblems() {}
+// Beginning of the block related to students completting exercises problems
+function choseSubcategoryForComplettingExercisesProblems() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-completting-exercises-problem-btn").text());
+
+    $("#first-category-for-students-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForComplettingExercisesDiv = createChatbotDiv("subcategory-for-completting-exercises-div");
+    let subcategoryForComplettingExercisesVariants = createChatbotDiv("subcategory-for-completting-exercises-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForComplettingExercisesDiv);
+
+    let subcategoryForComplettingExercisesMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForComplettingExercisesDiv.appendChild(subcategoryForComplettingExercisesMessage);
+    subcategoryForComplettingExercisesDiv.append(subcategoryForComplettingExercisesVariants);
+
+    let studentFindingExerciseButton = createChatBotButton("chat-bot-student-finding-exercise-btn", "Не могу найти задание");
+    studentFindingExerciseButton.onclick = answerForStudentFindingExercise;
+
+    let studentAttachingFilesProblemButton = createChatBotButton("chat-bot-student-attaching-files-problem-btn", "Не могу прикрепить файл в задании");
+    studentAttachingFilesProblemButton.onclick = answerForStudentAttachingFilesProblem;
+
+    let studentCantFindGuidelinesButton = createChatBotButton("chat-bot-student-cant-find-guidelines-btn", "Не могу найти методические указания/вариант");
+    studentCantFindGuidelinesButton.onclick = answerForStudentCantFindGuidelines;
+
+    let exerciseNotCheckingButton = createChatBotButton("chat-bot-exercise-not-checking-btn", "Задание долго не проверяется");
+    exerciseNotCheckingButton.onclick = answerForExerciseNotChecking;
+
+    subcategoryForComplettingExercisesVariants.appendChild(studentFindingExerciseButton);
+    subcategoryForComplettingExercisesVariants.appendChild(studentAttachingFilesProblemButton);
+    subcategoryForComplettingExercisesVariants.appendChild(studentCantFindGuidelinesButton);
+    subcategoryForComplettingExercisesVariants.appendChild(exerciseNotCheckingButton);
+
+    currentQuestionsBlockId = "subcategory-for-completting-exercises-div";
+    scrollDownChat();
+}
+
+function answerForStudentFindingExercise() {
+    let userChoseText =  $("#chat-bot-student-finding-exercise-btn").text(),
+        removeVariantsID = "subcategory-for-completting-exercises-variants",
+        answerDivID = "answer-for-student-finding-exercise-div",
+        answerMessage = "Обратитесь пожалуйста к преподавателю дисциплины";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForStudentAttachingFilesProblem() {
+    let userChoseText =  $("#chat-bot-student-attaching-files-problem-btn").text(),
+        removeVariantsID = "subcategory-for-completting-exercises-variants",
+        answerDivID = "answer-for-student-attaching-files-problem-div",
+        answerMessage = "Попробуйте вставить в ответ гиперсылку на документ";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForStudentCantFindGuidelines() {
+    let userChoseText =  $("#chat-bot-student-cant-find-guidelines-btn").text(),
+        removeVariantsID = "subcategory-for-completting-exercises-variants",
+        answerDivID = "answer-for-student-cant-find-guidelines-div",
+        answerMessage = "Как правило МУ находятся в разделе Общее (в самом верху курса), или же в элементе задания (прикреплены документом или подсвечены гиперссылкой)";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForExerciseNotChecking() {
+    let userChoseText =  $("#chat-bot-exercise-not-checking-btn").text(),
+        removeVariantsID = "subcategory-for-completting-exercises-variants",
+        answerDivID = "answer-for-exercise-not-checking-div",
+        answerMessage = "Обратитесь пожалуйста к преподпвателю дисциплины, возможно требуется очная защита работы";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+// End of the block related to students completting exercises problems
 
 function choseSubcategoryForStudentsAttendanceProblems() {}
 
