@@ -262,7 +262,7 @@ function subcategoryForNewAccountAuthQuestions() {
 function answerWhenUserHaveCorporateEmail() {
     let userChoseText =  $("#chat-bot-have-corporate-email-btn").text(),
         removeVariantsID = "subcategory-for-new-account-auth-questions-variants",
-        answerDivID = "anwer-for-teachers-auth-problems-having-corporate-email-div",
+        answerDivID = "answer-for-teachers-auth-problems-having-corporate-email-div",
         answerMessage = "Отправьте пожалуйста запрос на moodle_support@sevsu.ru";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
@@ -271,7 +271,7 @@ function answerWhenUserHaveCorporateEmail() {
 function answerWhenUserHaveNotCorporateEmail() {
     let userChoseText =  $("#chat-bot-have-not-corporate-email-btn").text(),
     removeVariantsID = "subcategory-for-new-account-auth-questions-variants",
-    answerDivID = "anwer-for-teachers-auth-problems-have-not-corporate-email-div",
+    answerDivID = "answer-for-teachers-auth-problems-have-not-corporate-email-div",
     answerMessage = "Вам необходимо заполнить <span><a href='docs/form-for-create-corporate-email.pdf'>форму</a></span> и отнести её в ДИС";
 
 chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage); 
@@ -310,7 +310,7 @@ function subcategoryForExistsAccountAuthQuestions() {
 function answerWhenTeacherForgotPassword() {
     let userChoseText =  $("#chat-bot-teacher-forgot-password-btn").text(),
         removeVariantsID = "subcategory-for-exists-account-auth-questions-variants",
-        answerDivID = "anwer-for-teacher-forgot-password-div",
+        answerDivID = "answer-for-teacher-forgot-password-div",
         answerMessage = "Вопспользуйтесь функцией восстановления пароля (на странице авторизации)";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
@@ -319,7 +319,7 @@ function answerWhenTeacherForgotPassword() {
 function answerWhenTeacherBlocked() {
     let userChoseText =  $("#chat-bot-teacher-blocked-btn").text(),
         removeVariantsID = "subcategory-for-exists-account-auth-questions-variants",
-        answerDivID = "anwer-for-teacher-blocked-div",
+        answerDivID = "answer-for-teacher-blocked-div",
         answerMessage = "Отправьте пожалуйста запрос на moodle_support@sevsu.ru";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
@@ -819,7 +819,134 @@ function choseCategoryForStudents() {
     scrollDownChat();
 }
 
-function choseSubcategoryForStudentsAuthProblems() {}
+// Begining of the block related to students auth problems
+function choseSubcategoryForStudentsAuthProblems() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-students-auth-problem-btn").text());
+
+    $("#first-category-for-students-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForStudentsAuthProblemsDiv = createChatbotDiv("subcategory-for-students-auth-problemms-div");
+    let subcategoryForStudentsAuthProblemsVariants = createChatbotDiv("subcategory-for-students-auth-problemms-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForStudentsAuthProblemsDiv);
+
+    let subcategoryForStudentsAuthProblemsMessage = createChatBotMessage("Есть ли у Вас аккаунт?");
+
+    subcategoryForStudentsAuthProblemsDiv.appendChild(subcategoryForStudentsAuthProblemsMessage);
+    subcategoryForStudentsAuthProblemsDiv.append(subcategoryForStudentsAuthProblemsVariants);
+
+    let newStudentAccountButton = createChatBotButton("chat-bot-new-student-account-btn", "Нет, я новый пользователь");
+    newStudentAccountButton.onclick = subcategoryForNewStudentAccount;
+
+    let existsStudentAccountButton = createChatBotButton("chat-bot-exists-student-account-btn", "Да, у меня уже есть аккаунт");
+    existsStudentAccountButton.onclick = subcategoryForExistsStudentAccount;
+
+    subcategoryForStudentsAuthProblemsVariants.appendChild(newStudentAccountButton);
+    subcategoryForStudentsAuthProblemsVariants.appendChild(existsStudentAccountButton);
+
+    currentQuestionsBlockId = "subcategory-for-students-auth-problemms-div";
+    scrollDownChat();
+}
+
+function subcategoryForNewStudentAccount() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-new-student-account-btn").text());
+
+    $("#subcategory-for-students-auth-problemms-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForNewStudentsAccountDiv = createChatbotDiv("subcategory-for-new-students-account-div");
+    let subcategoryForNewStudentsAccountVariants = createChatbotDiv("subcategory-for-new-students-account-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForNewStudentsAccountDiv);
+
+    let subcategoryForNewStudentsAccountMessage = createChatBotMessage("Создан ли уже приказ о зачислении?");
+
+    subcategoryForNewStudentsAccountDiv.appendChild(subcategoryForNewStudentsAccountMessage);
+    subcategoryForNewStudentsAccountDiv.append(subcategoryForNewStudentsAccountVariants);
+
+    let orderOfAdmissionNotExistsButton = createChatBotButton("chat-bot-order-of-admission-not-exists-btn", "Приказ о зачислении ещё не создан");
+    orderOfAdmissionNotExistsButton.onclick = answerForOrderOfAdmissionNotExists;
+
+    let orderOfAdmissionIsExistsButton = createChatBotButton("chat-bot-order-of-admission-is-exists-btn", "Приказ о зачислении уже создан");
+    orderOfAdmissionIsExistsButton.onclick = answerForOrderOfAdmissionIsExists;
+
+    subcategoryForNewStudentsAccountVariants.appendChild(orderOfAdmissionNotExistsButton);
+    subcategoryForNewStudentsAccountVariants.appendChild(orderOfAdmissionIsExistsButton);
+
+    currentQuestionsBlockId = "subcategory-for-new-students-account-div";
+    scrollDownChat();
+}
+
+function answerForOrderOfAdmissionNotExists() {
+    let userChoseText =  $("#chat-bot-order-of-admission-not-exists-btn").text(),
+        removeVariantsID = "subcategory-for-new-students-account-variants",
+        answerDivID = "answer-for-order-of-admission-not-exists-div",
+        answerMessage = "Подождите приказа о зачислении и обратитесь на moodle_support@sevsu.ru";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForOrderOfAdmissionIsExists() {
+    let userChoseText =  $("#chat-bot-order-of-admission-is-exists-btn").text(),
+        removeVariantsID = "subcategory-for-new-students-account-variants",
+        answerDivID = "answer-for-order-of-admission-is-exists-div",
+        answerMessage = "Обратитесь пожалуйста на moodle_support@sevsu.ru";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function subcategoryForExistsStudentAccount() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-exists-student-account-btn").text());
+
+    $("#subcategory-for-students-auth-problemms-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForExistsStudentsAccountDiv = createChatbotDiv("subcategory-for-exists-students-account-div");
+    let subcategoryForExistsStudentsAccountVariants = createChatbotDiv("subcategory-for-exists-students-account-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForExistsStudentsAccountDiv);
+
+    let subcategoryForExistsStudentsAccountMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForExistsStudentsAccountDiv.appendChild(subcategoryForExistsStudentsAccountMessage);
+    subcategoryForExistsStudentsAccountDiv.append(subcategoryForExistsStudentsAccountVariants);
+
+    let studentForgotPasswordButton = createChatBotButton("chat-bot-student-forgot-password-btn", "Забыли пароль?");
+    studentForgotPasswordButton.onclick = answerForStudentForgotPassword;
+
+    let studentBlockedButton = createChatBotButton("chat-bot-student-blocked-btn", "Учетная запись заблокирована?");
+    studentBlockedButton.onclick = answerForStudentBlocked;
+
+    subcategoryForExistsStudentsAccountVariants.appendChild(studentForgotPasswordButton);
+    subcategoryForExistsStudentsAccountVariants.appendChild(studentBlockedButton);
+
+    currentQuestionsBlockId = "subcategory-for-exists-students-account-div";
+    scrollDownChat();
+}
+
+function answerForStudentForgotPassword() {
+    let userChoseText =  $("#chat-bot-student-forgot-password-btn").text(),
+        removeVariantsID = "subcategory-for-exists-students-account-variants",
+        answerDivID = "answer-for-student-forgot-password-div",
+        answerMessage = "Вопспользуйтесь функцией восстановления пароля (на странице авторизации)";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForStudentBlocked() {
+    let userChoseText =  $("#chat-bot-student-blocked-btn").text(),
+        removeVariantsID = "subcategory-for-exists-students-account-variants",
+        answerDivID = "answer-for-student-blocked-div",
+        answerMessage = "Отправьте пожалуйста запрос на moodle_support@sevsu.ru";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+// End of the block related to students auth problems
 
 function choseSubcategoryForStudentsCanNotFindCource() {}
 
@@ -834,7 +961,7 @@ function choseSubcategoryForStudentsPhysicalCultureProblems() {}
 function answerForStudents500Problems() {
     let userChoseText =  $("#students-500-problem-btn").text(),
         removeVariantsID = "first-category-for-students-variants",
-        answerDivID = "anwer-for-students-500-problems-div",
+        answerDivID = "answer-for-students-500-problems-div",
         answerMessage = "Наша команда разработчиков уже знает о проблеме и решит её в ближайшее время";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
@@ -940,7 +1067,7 @@ function subcategoryForAuthProblems() {
 function answerForOutsideUserForgotPassword() {
     let userChoseText =  $("#chat-bot-outside-user-forgot-password-btn").text(),
         removeVariantsID = "subcategory-for-auth-problems-variants",
-        answerDivID = "anwer-for-outside-user-forgot-password-div",
+        answerDivID = "answer-for-outside-user-forgot-password-div",
         answerMessage = "Вопспользуйтесь функцией восстановления пароля (на странице авторизации)";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
@@ -949,7 +1076,7 @@ function answerForOutsideUserForgotPassword() {
 function answerForOutsideUserBlocked() {
     let userChoseText =  $("#chat-bot-outside-user-blocked-btn").text(),
         removeVariantsID = "subcategory-for-auth-problems-variants",
-        answerDivID = "anwer-for-outside-user-blocked-div",
+        answerDivID = "answer-for-outside-user-blocked-div",
         answerMessage = "Отправьте пожалуйста запрос на moodle_support@sevsu.ru";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
@@ -958,7 +1085,7 @@ function answerForOutsideUserBlocked() {
 function answerForRecieveConfirmation() {
     let userChoseText =  $("#chat-bot-recieve-confirmation-btn").text(),
         removeVariantsID = "subcategory-for-outside-users-auth-problems-variants",
-        answerDivID = "anwer-for-recieve-confirmation-div",
+        answerDivID = "answer-for-recieve-confirmation-div",
         answerMessage = "Отправьте пожалуйста запрос на moodle_support@sevsu.ru";
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
