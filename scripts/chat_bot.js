@@ -806,7 +806,94 @@ function choseCategoryForOutsideListeners() {
     scrollDownChat();
 }
 
-function subcategoryForOutsideUsersAuthQuestions() {}
+// Begining of the block with auth problems for outside listeners
+function subcategoryForOutsideUsersAuthQuestions() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-outside-users-auth-problem-btn").text());
+
+    $("#subcategory-for-outside-listeners-problemms-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForOutsideUsersAuthProblemsDiv = createChatbotDiv("subcategory-for-outside-users-auth-problems-div");
+    let subcategoryForOutsideUsersAuthProblemsVariants = createChatbotDiv("subcategory-for-outside-users-auth-problems-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForOutsideUsersAuthProblemsDiv);
+
+    let subcategoryForOutsideUsersAuthProblemsMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForOutsideUsersAuthProblemsDiv.appendChild(subcategoryForOutsideUsersAuthProblemsMessage);
+    subcategoryForOutsideUsersAuthProblemsDiv.append(subcategoryForOutsideUsersAuthProblemsVariants);
+
+    let chatBotAuthProblemButton = createChatBotButton("chat-bot-auth-problem-btn", "Не могу авторизоваться");
+    chatBotAuthProblemButton.onclick = subcategoryForAuthProblems;
+
+    let chatBotRecieveConfirmationButton = createChatBotButton("chat-bot-recieve-confirmation-btn", "Мне не пришло подтверждение авторизации на email");
+    chatBotRecieveConfirmationButton.onclick = answerForRecieveConfirmation;
+
+    subcategoryForOutsideUsersAuthProblemsVariants.appendChild(chatBotAuthProblemButton);
+    subcategoryForOutsideUsersAuthProblemsVariants.appendChild(chatBotRecieveConfirmationButton);
+
+    currentQuestionsBlockId = "subcategory-for-outside-users-auth-problems-div";
+    scrollDownChat();
+}
+
+function subcategoryForAuthProblems() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-auth-problem-btn").text());
+
+    $("#subcategory-for-outside-users-auth-problems-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForAuthProblemsDiv = createChatbotDiv("subcategory-for-auth-problems-div");
+    let subcategoryForAuthProblemsVariants = createChatbotDiv("subcategory-for-auth-problems-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForAuthProblemsDiv);
+
+    let subcategoryForAuthProblemsMessage = createChatBotMessage("Какая именно проблема возникла в процессе авторизации?");
+
+    subcategoryForAuthProblemsDiv.appendChild(subcategoryForAuthProblemsMessage);
+    subcategoryForAuthProblemsDiv.append(subcategoryForAuthProblemsVariants);
+
+    let chatBotOutsideUserForgotPasswordButton = createChatBotButton("chat-bot-outside-user-forgot-password-btn", "Забыли пароль?");
+    chatBotOutsideUserForgotPasswordButton.onclick = answerForOutsideUserForgotPassword;
+
+    let chatBotOutsideUserBlockedButton = createChatBotButton("chat-bot-outside-user-blocked-btn", "Учетная запись заблокирована");
+    chatBotOutsideUserBlockedButton.onclick = answerForOutsideUserBlocked;
+
+    subcategoryForAuthProblemsVariants.appendChild(chatBotOutsideUserForgotPasswordButton);
+    subcategoryForAuthProblemsVariants.appendChild(chatBotOutsideUserBlockedButton);
+
+    currentQuestionsBlockId = "subcategory-for-auth-problems-div";
+    scrollDownChat();
+}
+
+function answerForOutsideUserForgotPassword() {
+    let userChoseText =  $("#chat-bot-outside-user-forgot-password-btn").text(),
+        removeVariantsID = "subcategory-for-auth-problems-variants",
+        answerDivID = "anwer-for-outside-user-forgot-password-div",
+        answerMessage = "Вопспользуйтесь функцией восстановления пароля (на странице авторизации)";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForOutsideUserBlocked() {
+    let userChoseText =  $("#chat-bot-outside-user-blocked-btn").text(),
+        removeVariantsID = "subcategory-for-auth-problems-variants",
+        answerDivID = "anwer-for-outside-user-blocked-div",
+        answerMessage = "Отправьте пожалуйста запрос на moodle_support@sevsu.ru";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForRecieveConfirmation() {
+    let userChoseText =  $("#chat-bot-recieve-confirmation-btn").text(),
+        removeVariantsID = "subcategory-for-outside-users-auth-problems-variants",
+        answerDivID = "anwer-for-recieve-confirmation-div",
+        answerMessage = "Отправьте пожалуйста запрос на moodle_support@sevsu.ru";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+// End of the block with auth problems for outside listeners
 
 // Begining of the block with questions about support in the cource
 function subcategoryForSupportInTheCource() {
