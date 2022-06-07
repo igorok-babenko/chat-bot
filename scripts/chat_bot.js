@@ -771,7 +771,7 @@ function answerForTeacherGroupesBreakdownProblems() {
 
 function choseCategoryForStudents() { alert("Функционал ответов на данную категорию будет разработан позднее!"); }
 
-// Begining of the block with qestions related to qoutside listeners
+// Begining of the block with qestions related to outside listeners
 function choseCategoryForOutsideListeners() {
     let userChose = chatBotCreateUserMessage($("#chat-bot-outside-listener-button").text());
 
