@@ -1175,9 +1175,106 @@ function answerForStudentForgotToCheckIn() {
 }
 // End of the block related to students problems with attendance
 
-function choseSubcategoryForStudentsMarksProblems() {}
+// Beginning of the block related to students marks problems
+function choseSubcategoryForStudentsMarksProblems() {
+    let userChose = chatBotCreateUserMessage($("#students-marks-problem-btn").text());
 
-function choseSubcategoryForStudentsPhysicalCultureProblems() {}
+    $("#first-category-for-students-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForStudentsMarksProblemsDiv = createChatbotDiv("subcategory-for-students-marks-problems-div");
+    let subcategoryForStudentsMarksProblemsVariants = createChatbotDiv("subcategory-for-students-marks-problems-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForStudentsMarksProblemsDiv);
+
+    let subcategoryForStudentsMarksProblemsMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForStudentsMarksProblemsDiv.appendChild(subcategoryForStudentsMarksProblemsMessage);
+    subcategoryForStudentsMarksProblemsDiv.append(subcategoryForStudentsMarksProblemsVariants);
+
+    let studentCantFindMarksButton = createChatBotButton("chat-bot-student-cant-find-marks-btn", "Не могу найти свои оценки");
+    studentCantFindMarksButton.onclick = answerForStudentCantFindMarks;
+
+    let studentWhatIsLeftToFinishButton = createChatBotButton("student-what-is-left-to-finish-btn", "Не знаю что мне осталось досдать");
+    studentWhatIsLeftToFinishButton.onclick = answerForStudentWhatIsLeftToFinish;
+
+    let studentFindErrorInExerciseButton = createChatBotButton("student-find-error-in-exercise-btn", "Обнаружил ошибку в задании и меня неверно оценили");
+    studentFindErrorInExerciseButton.onclick = answerForStudentFindErrorInExercise;
+
+    subcategoryForStudentsMarksProblemsVariants.appendChild(studentCantFindMarksButton);
+    subcategoryForStudentsMarksProblemsVariants.appendChild(studentWhatIsLeftToFinishButton);
+    subcategoryForStudentsMarksProblemsVariants.appendChild(studentFindErrorInExerciseButton);
+
+    currentQuestionsBlockId = "subcategory-for-students-marks-problems-div";
+    scrollDownChat();
+}
+
+function answerForStudentCantFindMarks() {
+    let userChoseText =  $("#chat-bot-student-cant-find-marks-btn").text(),
+        removeVariantsID = "subcategory-for-students-marks-problems-variants",
+        answerDivID = "answer-for-student-cant-find-marks-div",
+        answerMessage = "Обратитесь к преподавателю, ведущему курс. Возможно до окончания курса оценки скрыты";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForStudentWhatIsLeftToFinish() {
+    let userChoseText =  $("#student-what-is-left-to-finish-btn").text(),
+        removeVariantsID = "subcategory-for-students-marks-problems-variants",
+        answerDivID = "answer-for-student-what-is-left-to-finish-div",
+        answerMessage = "Информация о всех оцениваемых заданиях есть в разделе 'Оценки'";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForStudentFindErrorInExercise() {
+    let userChoseText =  $("#student-find-error-in-exercise-btn").text(),
+        removeVariantsID = "subcategory-for-students-marks-problems-variants",
+        answerDivID = "answer-for-student-find-error-in-exercise-div",
+        answerMessage = "Обратитесь к преподавателю, ведущему курс";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+// End of the block related to students marks problems
+
+// Beginning of the block related to students physical culture elective cource problems
+function choseSubcategoryForStudentsPhysicalCultureProblems() {
+    let userChose = chatBotCreateUserMessage($("#students-physical-culture-problem-btn").text());
+
+    $("#first-category-for-students-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForStudentsPhysicalCultureProblemsDiv = createChatbotDiv("subcategory-for-students-physical-culture-problems-div");
+    let subcategoryForStudentsPhysicalCultureProblemsVariants = createChatbotDiv("subcategory-for-students-physical-culture-problems-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForStudentsPhysicalCultureProblemsDiv);
+
+    let subcategoryForStudentsPhysicalCultureProblemsMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForStudentsPhysicalCultureProblemsDiv.appendChild(subcategoryForStudentsPhysicalCultureProblemsMessage);
+    subcategoryForStudentsPhysicalCultureProblemsDiv.append(subcategoryForStudentsPhysicalCultureProblemsVariants);
+
+    let studentCantEnrolToCourceButton = createChatBotButton("chat-bot-student-cant-enrol-to-cource-btn", "Не могу записаться на курс");
+    studentCantEnrolToCourceButton.onclick = answerForStudentCantEnrolToCource;
+
+    subcategoryForStudentsPhysicalCultureProblemsVariants.appendChild(studentCantEnrolToCourceButton);
+
+    currentQuestionsBlockId = "subcategory-for-students-physical-culture-problems-div";
+    scrollDownChat();
+}
+
+function answerForStudentCantEnrolToCource() {
+    let userChoseText =  $("#chat-bot-student-cant-enrol-to-cource-btn").text(),
+        removeVariantsID = "subcategory-for-students-physical-culture-problems-variants",
+        answerDivID = "answer-for-student-cant-enroll-to-cource-div",
+        answerMessage = "Обратитесь на кафедру 'Физкультура и спорт' в спорткомплексе (Университетская 33)";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+// End of the block related to students physical culture elective cource problems
 
 function answerForStudents500Problems() {
     let userChoseText =  $("#students-500-problem-btn").text(),
