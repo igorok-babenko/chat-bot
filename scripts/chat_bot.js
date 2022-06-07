@@ -766,10 +766,80 @@ function answerForTeacherGroupesBreakdownProblems() {
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
-
 // End of the block with qestions related to teachers
 
-function choseCategoryForStudents() { alert("Функционал ответов на данную категорию будет разработан позднее!"); }
+// Begining of the block with qestions related to students
+function choseCategoryForStudents() {
+    $("#first-question-variants").remove();
+
+    let userChose = chatBotCreateUserMessage("Студент");
+
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let firstCategoryForStudentsDiv = createChatbotDiv("first-category-for-students-div");
+    let firstCategoryForStudentsVariants = createChatbotDiv("first-category-for-students-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(firstCategoryForStudentsDiv);
+
+    let firstCategoryForStudentsMessage = createChatBotMessage("Выберите пожалуйста категорию, к которой относится Ваш вопрос:");
+
+    firstCategoryForStudentsDiv.appendChild(firstCategoryForStudentsMessage);
+    firstCategoryForStudentsDiv.append(firstCategoryForStudentsVariants);
+
+    let studentsAuthProblemsButton = createChatBotButton("chat-bot-students-auth-problem-btn", "Проблемы с авторизацией");
+    studentsAuthProblemsButton.onclick = choseSubcategoryForStudentsAuthProblems;
+
+    let studentsCanNotFindCourceButton = createChatBotButton("students-can-not-find-cource-btn", "Не могу найти курс");
+    studentsCanNotFindCourceButton.onclick = choseSubcategoryForStudentsCanNotFindCource;
+
+    let complettingExercisesProblemsButton = createChatBotButton("chat-bot-completting-exercises-problem-btn", "Проблемы с выполнением заданий в курсе");
+    complettingExercisesProblemsButton.onclick = choseSubcategoryForComplettingExercisesProblems;
+
+    let studentsAttendanceProblemsButton = createChatBotButton("students-attendance-problem-btn", "Проблемы с посещаемостью");
+    studentsAttendanceProblemsButton.onclick = choseSubcategoryForStudentsAttendanceProblems;
+
+    let studentsMarksProblemsButton = createChatBotButton("students-marks-problem-btn", "Проблемы с оценками");
+    studentsMarksProblemsButton.onclick = choseSubcategoryForStudentsMarksProblems;
+
+    let studentsPhysicalCultureProblemsButton = createChatBotButton("students-physical-culture-problem-btn", "Проблемы с элективным курсом по физкультуре");
+    studentsPhysicalCultureProblemsButton.onclick = choseSubcategoryForStudentsPhysicalCultureProblems;
+
+    let students500ProblemsButton = createChatBotButton("students-500-problem-btn", "Не могу зайти на курс (ошибка 500-505)");
+    students500ProblemsButton.onclick = answerForStudents500Problems;
+
+    firstCategoryForStudentsVariants.appendChild(studentsAuthProblemsButton);
+    firstCategoryForStudentsVariants.appendChild(studentsCanNotFindCourceButton);
+    firstCategoryForStudentsVariants.appendChild(complettingExercisesProblemsButton);
+    firstCategoryForStudentsVariants.appendChild(studentsAttendanceProblemsButton);
+    firstCategoryForStudentsVariants.appendChild(studentsMarksProblemsButton);
+    firstCategoryForStudentsVariants.appendChild(studentsPhysicalCultureProblemsButton);
+    firstCategoryForStudentsVariants.appendChild(students500ProblemsButton);
+
+    currentQuestionsBlockId = "first-category-for-students-div";
+    scrollDownChat();
+}
+
+function choseSubcategoryForStudentsAuthProblems() {}
+
+function choseSubcategoryForStudentsCanNotFindCource() {}
+
+function choseSubcategoryForComplettingExercisesProblems() {}
+
+function choseSubcategoryForStudentsAttendanceProblems() {}
+
+function choseSubcategoryForStudentsMarksProblems() {}
+
+function choseSubcategoryForStudentsPhysicalCultureProblems() {}
+
+function answerForStudents500Problems() {
+    let userChoseText =  $("#students-500-problem-btn").text(),
+        removeVariantsID = "first-category-for-students-variants",
+        answerDivID = "anwer-for-students-500-problems-div",
+        answerMessage = "Наша команда разработчиков уже знает о проблеме и решит её в ближайшее время";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+// End of the block with qestions related to students
 
 // Begining of the block with qestions related to outside listeners
 function choseCategoryForOutsideListeners() {
