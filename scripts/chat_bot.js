@@ -945,10 +945,58 @@ function answerForStudentBlocked() {
 
     chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
 }
-
 // End of the block related to students auth problems
 
-function choseSubcategoryForStudentsCanNotFindCource() {}
+// Beginning of the block related to students finding cource problems
+function choseSubcategoryForStudentsCanNotFindCource() {
+    let userChose = chatBotCreateUserMessage($("#students-can-not-find-cource-btn").text());
+
+    $("#first-category-for-students-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForStudentsCanNotFindCourceDiv = createChatbotDiv("subcategory-for-students-can-not-find-cource-div");
+    let subcategoryForStudentsCanNotFindCourceVariants = createChatbotDiv("subcategory-for-students-can-not-find-cource-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForStudentsCanNotFindCourceDiv);
+
+    let subcategoryForStudentsCanNotFindCourceMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForStudentsCanNotFindCourceDiv.appendChild(subcategoryForStudentsCanNotFindCourceMessage);
+    subcategoryForStudentsCanNotFindCourceDiv.append(subcategoryForStudentsCanNotFindCourceVariants);
+
+    let studentFindingCourceByTimetableButton = createChatBotButton("chat-bot-student-finding-cource-by-timetable-btn", "Не могу найти дисциплины по расписанию");
+    studentFindingCourceByTimetableButton.onclick = answerForStudentFindingCourceByTimetable;
+
+    let studentFindingOutsideCourceButton = createChatBotButton("chat-bot-student-finding-outside-cource-btn", "Не могу найти курс на внешнем ресурсе");
+    studentFindingOutsideCourceButton.onclick = answerForStudentFindingOutsideCource;
+
+    subcategoryForStudentsCanNotFindCourceVariants.appendChild(studentFindingCourceByTimetableButton);
+    subcategoryForStudentsCanNotFindCourceVariants.appendChild(studentFindingOutsideCourceButton);
+
+    currentQuestionsBlockId = "subcategory-for-students-can-not-find-cource-div";
+    scrollDownChat();
+}
+
+function answerForStudentFindingCourceByTimetable() {
+    let userChoseText =  $("#chat-bot-student-finding-cource-by-timetable-btn").text(),
+        removeVariantsID = "subcategory-for-students-can-not-find-cource-variants",
+        answerDivID = "answer-for-student-finding-cource-by-timetable-div",
+        answerMessage = "Обратитесь пожалуйста к преподавателю, чтобы он зачислил Вас на электронный курс";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForStudentFindingOutsideCource() {
+    let userChoseText =  $("#chat-bot-student-finding-outside-cource-btn").text(),
+        removeVariantsID = "subcategory-for-students-can-not-find-cource-variants",
+        answerDivID = "answer-for-student-finding-outside-cource-div",
+        answerMessage = "Обратитесь пожалуйста к преподавателю, который ведет этот курс. Возможно название курса не совпадает с названием дисциплины";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+// End of the block related to students finding cource problems
 
 function choseSubcategoryForComplettingExercisesProblems() {}
 
