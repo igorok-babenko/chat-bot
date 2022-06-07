@@ -1073,7 +1073,107 @@ function answerForExerciseNotChecking() {
 }
 // End of the block related to students completting exercises problems
 
-function choseSubcategoryForStudentsAttendanceProblems() {}
+// Beginning of the block related to students problems with attendance
+function choseSubcategoryForStudentsAttendanceProblems() {
+    let userChose = chatBotCreateUserMessage($("#students-attendance-problem-btn").text());
+
+    $("#first-category-for-students-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForStudentsAttendanceDiv = createChatbotDiv("subcategory-for-students-attendance-problems-div");
+    let subcategoryForStudentsAttendanceVariants = createChatbotDiv("subcategory-for-students-attendance-problems-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForStudentsAttendanceDiv);
+
+    let subcategoryForStudentsAttendanceMessage = createChatBotMessage("Какая именно проблема возникла с посещаемостью?");
+
+    subcategoryForStudentsAttendanceDiv.appendChild(subcategoryForStudentsAttendanceMessage);
+    subcategoryForStudentsAttendanceDiv.append(subcategoryForStudentsAttendanceVariants);
+
+    let studentCantCheckInButton = createChatBotButton("chat-bot-student-cant-check-in-btn", "Не могу отметиться");
+    studentCantCheckInButton.onclick = subcategoryForStudentCantCheckIn;
+
+    let studentCantFindAttendanceElementButton = createChatBotButton("chat-bot-student-cant-find-attendance-element-btn", "Не могу найти элемент посещаемости");
+    studentCantFindAttendanceElementButton.onclick = answerForStudentCantFindAttendanceElement;
+
+    let studentForgotToCheckInButton = createChatBotButton("chat-bot-student-forgot-to-check-in-btn", "Я забыл(a) отметиться на паре");
+    studentForgotToCheckInButton.onclick = answerForStudentForgotToCheckIn;
+
+    subcategoryForStudentsAttendanceVariants.appendChild(studentCantCheckInButton);
+    subcategoryForStudentsAttendanceVariants.appendChild(studentCantFindAttendanceElementButton);
+    subcategoryForStudentsAttendanceVariants.appendChild(studentForgotToCheckInButton);
+
+    currentQuestionsBlockId = "subcategory-for-students-attendance-problems-div";
+    scrollDownChat();
+}
+
+function subcategoryForStudentCantCheckIn() {
+    let userChose = chatBotCreateUserMessage($("#chat-bot-student-cant-check-in-btn").text());
+
+    $("#subcategory-for-students-attendance-problems-variants").remove();
+    
+    let messagesArea = $("#chat-bot-messages-area-div");
+    let subcategoryForStudentsCantCheckInDiv = createChatbotDiv("subcategory-for-students-cant-check-in-div");
+    let subcategoryForStudentsCantCheckInVariants = createChatbotDiv("subcategory-for-students-cant-check-in-variants");
+
+    messagesArea.append(userChose);
+    messagesArea.append(subcategoryForStudentsCantCheckInDiv);
+
+    let subcategoryForStudentsAttendanceMessage = createChatBotMessage("Уточните пожалуйста проблему:");
+
+    subcategoryForStudentsCantCheckInDiv.appendChild(subcategoryForStudentsAttendanceMessage);
+    subcategoryForStudentsCantCheckInDiv.append(subcategoryForStudentsCantCheckInVariants);
+
+    let lessonIsAbsentInAttendanceButton = createChatBotButton("chat-bot-lesson-is-absent-in-attendance-btn", "Нет нужного занятия в посещаемости");
+    lessonIsAbsentInAttendanceButton.onclick = answerForLessonIsAbsentInAttendanceButton;
+
+    let studentCantSendAttendanceButton = createChatBotButton("student-cant-send-attendance-btn", "Занятие есть, но не могу отправить посещаемость");
+    studentCantSendAttendanceButton.onclick = answerForStudentCantSendAttendanceButton;
+
+    subcategoryForStudentsCantCheckInVariants.appendChild(lessonIsAbsentInAttendanceButton);
+    subcategoryForStudentsCantCheckInVariants.appendChild(studentCantSendAttendanceButton);
+
+    currentQuestionsBlockId = "subcategory-for-students-cant-check-in-div";
+    scrollDownChat();
+}
+
+function answerForLessonIsAbsentInAttendanceButton() {
+    let userChoseText =  $("#chat-bot-lesson-is-absent-in-attendance-btn").text(),
+        removeVariantsID = "subcategory-for-students-cant-check-in-variants",
+        answerDivID = "answer-for-leson-is-absent-in-attendance-div",
+        answerMessage = "Обратитесь к преподавателю, ведущему курс";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForStudentCantSendAttendanceButton() {
+    let userChoseText =  $("#student-cant-send-attendance-btn").text(),
+        removeVariantsID = "subcategory-for-students-cant-check-in-variants",
+        answerDivID = "answer-for-student-cant-send-attendance-div",
+        answerMessage = "Отправить посещаемость возможно только в первые 15 минут занятия. Обратитесь к старосте или преподавателю, они Вас отметят";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForStudentCantFindAttendanceElement() {
+    let userChoseText =  $("#chat-bot-student-cant-find-attendance-element-btn").text(),
+        removeVariantsID = "subcategory-for-students-attendance-problems-variants",
+        answerDivID = "answer-for-student-cant-find-attendance-element-div",
+        answerMessage = "Обратитесь к преподавателю, ведущему курс";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+
+function answerForStudentForgotToCheckIn() {
+    let userChoseText =  $("#chat-bot-student-forgot-to-check-in-btn").text(),
+        removeVariantsID = "subcategory-for-students-attendance-problems-variants",
+        answerDivID = "answer-for-student-forgot-to-check-in-div",
+        answerMessage = "Если Вы забыли отметиться - сообщите об этом старосте или преподавателю";
+
+    chatBotCreateAnswer(userChoseText, removeVariantsID, answerDivID, answerMessage);
+}
+// End of the block related to students problems with attendance
 
 function choseSubcategoryForStudentsMarksProblems() {}
 
